@@ -1,0 +1,49 @@
+{
+	"version": "1.0.0",
+	"name": "cleanweb/wp-rig",
+	"description": "Starter theme for WordPress with Twig templates",
+	"type":"wordpress-theme",
+	"minimum-stability" : "alpha",
+	"authors": [
+		{
+			"email": "bjaskulski@cleanweb.tech",
+			"name": "bjaskulski"
+		}
+	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://wpackagist.org"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"CleanWeb\\": "includes/"
+		}
+	},
+	"require": {
+      "ext-json": "*"
+    },
+	"require-dev": {
+		"roave/security-advisories": "dev-latest",
+		"wpdesk/wp-code-sniffer": "^1.2"
+	},
+	"scripts": {
+		"bundle": [
+			"@composer install --no-dev",
+			"./bin/version.sh",
+			"if [[ -f ${PWD##*/}.zip ]]; then rm ${PWD##*/}.zip; fi;",
+			"if [[ -d ./dist ]]; then rm -rf ./dist; fi;",
+			"npm run build",
+			"zip -rq ${PWD##*/}.zip ./ -x ${PWD##*/}.zip node_modules\/\\* [.]* .git\/\\* assets\/\\* tests\/\\* vite.config.ts composer.* wptwig.config.json tailwind.config.js tsconfig.json docker-compose.yml postcss.config.js phpunit.xml phpcs.xml.dist docker-compse.yml package*",
+			"@composer install"
+		],
+		"b": "@bundle"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"composer/installers": true
+		}
+	}
+}

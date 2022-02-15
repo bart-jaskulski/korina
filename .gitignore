@@ -1,0 +1,6 @@
+tailwind.config.js
+vendor
+node_modules
+.phpcs-cache
+manifest.json
+dist
