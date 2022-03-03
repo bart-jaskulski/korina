@@ -1,0 +1,11 @@
+{
+	"version": "1.0.0",
+	"assets": [
+		"assets/css/style.css"
+	],
+	"watchAssets": [
+		"templates/**/*.php",
+		"assets/**/*.(ts|css)",
+		"woocommerce/**/*.php"
+	]
+}

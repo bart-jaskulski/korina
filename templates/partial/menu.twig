@@ -1,0 +1,15 @@
+{% if menu %}
+<details class="c-menu-container | js-menu-container">
+	<summary class="lg:hidden | text-lg | p-2 | icon-menu"></summary>
+	<ul class="c-menu | flex [ flex-col lg:flex-row ] [ lg:mt-6 lg:mt-0 md:gap-4 ] [ font-semibold text-md uppercase ] [ bg-black ]">
+	{% for item in items %}
+		<li class="{{ item.classes | join(' ') }}">
+			<a class="c-menu__link" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+			{% if item.children %}
+				{% include "partial/menu.twig" with {'items': item.children} %}
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+</details>
+{% endif %}

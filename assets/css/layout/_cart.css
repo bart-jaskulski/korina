@@ -1,0 +1,54 @@
+.l-cart-item {
+  display: grid;
+  grid-template-areas:
+    "delete"
+    "image"
+    "title"
+    "price";
+  gap: 1.5rem;
+
+  @media (--lg) {
+    grid-template-areas:
+      "image title delete"
+      "image title price";
+    grid-template-columns: 130px 1fr;
+    grid-template-rows: 25px 1fr;
+  }
+
+  & .l-cart-item__image {
+    grid-area: image;
+    align-self: center;
+
+    & img {
+      width: 130px;
+      aspect-ratio: 1;
+      height: auto;
+
+      @supports not (aspect-ratio: 1) {
+        height: 130px;
+      }
+    }
+  }
+
+  & .l-cart-item__title {
+    grid-area: title;
+    align-self: center;
+  }
+
+  & .l-cart-item__delete {
+    grid-area: delete;
+    justify-self: end;
+  }
+
+  & .l-cart-item__price {
+    grid-area: price;
+    align-self: end;
+    justify-self: end;
+  }
+}
+
+.l-cart-totals-table {
+  & td {
+    text-align: right;
+  }
+}

@@ -3,8 +3,9 @@ version: '3.9'
 services:
 
   wordpress:
-    image: wordpress
+    image: wordpress:php8.0
     restart: always
+    init: true
     ports:
       - "8080:80"
     environment:
@@ -13,12 +14,16 @@ services:
       WORDPRESS_DB_PASSWORD: password
       WORDPRESS_DB_NAME: db
       WORDPRESS_DEBUG: 1
+    depends_on:
+      - db
     volumes:
-      - ./:/var/www/html/wp-content/themes/theme
+      - wordpress:/var/www/html
+      - ./:/var/www/html/wp-content/themes/korina
 
   db:
     image: mariadb:10.3
     restart: always
+    init: true
     environment:
       MYSQL_DATABASE: db
       MYSQL_USER: admin
@@ -29,3 +34,4 @@ services:
 
 volumes:
   db:
+  wordpress:

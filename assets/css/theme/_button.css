@@ -1,0 +1,14 @@
+.c-button[data-button-type="filled"] {
+	--button-color: var(--color-primary);
+	--button-background: var(--white);
+}
+
+.c-button[data-button-type="outline"] {
+	--button-color: var(--white);
+	--button-background: transparent;
+	--button-border: 1px solid var(--white);
+}
+
+.c-button:is(:hover) {
+  --button-background: #8e8e8e;
+}

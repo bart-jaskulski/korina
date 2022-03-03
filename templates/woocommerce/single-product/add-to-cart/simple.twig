@@ -1,0 +1,45 @@
+{% if product.is_purchasable() %}
+
+	{% if product.is_in_stock() %}
+		{% do action('woocommerce_before_add_to_cart_form') %}
+		<form action="{{ post.link }}"
+			  method="post"
+			  enctype="multipart/form-data">
+			{% do action( 'woocommerce_before_add_to_cart_button' ) %}
+
+			{% do action( 'woocommerce_before_add_to_cart_quantity' ) %}
+
+			<label for="quantity">Ilość</label>
+			<script src="{{ theme.link }}/dist/js/increment-input.js"></script>
+			<increment-input>
+				<style>
+					input::-webkit-outer-spin-button,
+					input::-webkit-inner-spin-button {
+						-webkit-appearance: none;
+						margin: 0;
+					}
+					input[type="number"] {
+						-moz-appearance: textfield !important;
+					}
+				</style>
+				<input type="number"
+					   id="quantity"
+					   step="1"
+					   name="quantity"
+					   autocomplete="off"
+					   inputmode="numeric"
+					   min="{{ product.get_min_purchase_quantity() ? 1|apply_filters('woocommerce_quantity_input_min', product) }}"
+					   max="{{ product.get_max_purchase_quantity() ? ''|apply_filters('woocommerce_quantity_input_max', product) }}"
+					   value="{{ request.post.quantity ? fn('wc_stock_amount',request.post.quantity) : product.get_min_purchase_quantity() }}"/>
+			</increment-input>
+
+			{% do action( 'woocommerce_after_add_to_cart_quantity' ) %}
+
+			<button class="c-button" data-button-width="full" data-button-type="filled" type="submit" name="add-to-cart" value="{{ product.get_id() }}">Dodaj do koszyka</button>
+
+			{% do action( 'woocommerce_after_add_to_cart_button' ) %}
+		</form>
+		{% do action('woocommerce_after_add_to_cart_form') %}
+	{% endif %}
+
+{% endif %}

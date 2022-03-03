@@ -1,0 +1,95 @@
+/*
+  * General HTML elements styling. Without using classes.
+  */
+html {
+  box-sizing: border-box;
+  margin: auto;
+  font-family: var(--font-sans);
+  background-color: var(--site-background, transparent);
+  color: var(--site-text, black);
+  text-rendering: optimizeSpeed;
+}
+
+summary {
+  cursor: pointer;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+strong {
+  font-weight: var(--font-bold, 700);
+}
+
+del {
+  text-decoration: line-through;
+  color: var(--gray-3);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  all: revert;
+}
+
+a {
+  color: currentColor;
+
+  &:not([href]) {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 1ex;
+  }
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 88%);
+}
+
+dialog + .backdrop {
+  background: rgb(0 0 0 / 88%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* For CMS usage - list elements without class should have defaults styling */
+:where(ul, ol):not([class]) {
+  list-style: revert;
+  padding-inline-start: 24px;
+}
+
+/*
+  :where(p, a, ul, li, ol, strong, b):where(:not([class], [rel="tag"])) {
+	font-size: var(--text-base, 1rem);
+	line-height: var(--line-height, 1.5);
+  }
+   */
+
+:where(input, select, textarea):where([class~="default"], :not([class])) {
+  background-color: var(--gray-0);
+  font-size: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--gray-1);
+  padding: 1.75ex;
+  width: 100%;
+
+  &::placeholder {
+    color: var(--gray-3);
+  }
+}
+
+table {
+  width: 100%;
+}
+

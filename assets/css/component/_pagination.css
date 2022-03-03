@@ -1,0 +1,31 @@
+.c-pagination {
+
+}
+
+.c-pagination__item {
+  width: 40px;
+  height: auto;
+  aspect-ratio: 1;
+  background-color: #121212;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &[aria-current] {
+    background-color: var(--white);
+    color: var(--black);
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+
+  &:not([aria-current], [disabled]):hover {
+    background-color: #2c2c2c;
+  }
+
+  @supports not (aspect-ratio: 1) {
+    height: 40px;
+  }
+}

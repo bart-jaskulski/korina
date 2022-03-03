@@ -4,7 +4,7 @@ const plugins = [
   require('postcss-import'),
   require('tailwindcss/nesting')(require('postcss-nesting')),
   require('tailwindcss')({
-    content: ['./templates/**/*.twig', './woocommerce/**/*.php'],
+    content: [ './*.php', './templates/**/*.php',  './woocommerce/**/*.php'],
     theme: {
       screens: {
         sm: { raw: '(--sm)' },

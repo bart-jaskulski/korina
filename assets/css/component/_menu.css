@@ -1,0 +1,38 @@
+.c-menu-container > summary {
+  list-style: none;
+}
+
+.has-fluid-checkout .c-menu-container {
+  display: none;
+}
+
+.c-menu {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  @media (--lg) {
+    position: initial;
+    height: initial;
+  }
+}
+
+.c-menu-container[open] .c-menu {
+  --padding-size: calc((100vw - var(--container-full)) / 2);
+
+  margin-inline: calc(50% - 50vw);
+  padding-inline: var(--padding-size);
+  width: calc(100vw - (var(--padding-size) * 2));
+
+  @media (--lg) {
+    margin-inline: unset;
+    padding-inline: unset;
+    width: revert;
+  }
+}
+
+.c-menu__link {
+  display: block;
+  padding-block: 20px;
+}

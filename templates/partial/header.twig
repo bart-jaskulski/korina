@@ -1,0 +1,39 @@
+<header class="sticky | bg-black | w-full | top-0 | z-50 [ py-2 lg:py-0 ]">
+	<div class="l-container | flex-between">
+		<a class="abs-center--x lg:abs-reset" href="{{site.url}}" rel="home">
+			<img class="c-site-logo"
+				 src="{{site_logo.src|resize(76)}}"
+				 srcset="{{site_logo.src|resize(76)}} 1x, {{site_logo.src|resize(152) }} 2x"
+				 alt="{{site.name}}"
+				 width="76"
+				 height="76"/>
+		</a>
+		<nav class="nav-main" role="navigation">
+			{% include "partial/menu.twig" with {'items': menu.get_items} %}
+		</nav>
+		<div class="order-last">
+			<button class="js-product-search | cursor-pointer [ mr-4 ]" type="button"><i class="icon-search"></i></button>
+			<a href="{{ cart_link }}" class="relative">
+				{% if cart_count > 0 %}
+					<span class="[ bg-black text-white ] [ absolute -left-2 ] [ text-[10px] font-bold text-center leading-[1.6] ] [ w-[18px] h-[18px] ] [ border-solid border border-white rounded-full ]">
+						{{ cart_count < 10 ? cart_count : '9+' }}
+					</span>
+				{% endif %}
+				<i class="icon-shopping-bag"></i>
+			</a>
+			<div class="absolute inset-0 w-full" id="search-form" style="display: none">{{ search }}</div>
+		</div>
+		<script>
+			function focusSearch() {
+				const search = document.getElementById('search-form')
+				search.style.display = 'block';
+				search.querySelector('input').focus();
+				const listener = () => {
+					search.style.display = 'none'
+					search.removeEventListener('focusout', listener)
+				}
+				search.addEventListener('focusout', listener)
+			}
+		</script>
+	</div>
+</header>

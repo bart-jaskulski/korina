@@ -34,10 +34,10 @@
 	<config name="text_domain" value="hashifood-theme"/>
 
 	<!-- This value should be aligned with WordPress support version declared in plugin header -->
-	<config name="minimum_supported_wp_version" value="5.8"/>
+	<config name="minimum_supported_wp_version" value="5.9"/>
 
 	<!-- Set value aligned with supported PHP Version for PHPCompatibilityWP check. -->
-	<config name="testVersion" value="7.4-"/>
+	<config name="testVersion" value="8-"/>
 
 	<rule ref="WPDeskPlugin"/>
 

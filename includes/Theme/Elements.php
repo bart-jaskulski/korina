@@ -18,10 +18,8 @@ final class Elements implements Component {
 	public function register_nav_menus(): void {
 		register_nav_menus(
 			[
-				'header-menu' => esc_html__( 'Primary', 'wojewodastudio' ),
-				'social-menu' => esc_html__( 'Social Links', 'wojewodastudio' ),
-				'footer'      => esc_html__( 'Footer menu', 'wojewodastudio' ),
-				'shop-menu' => esc_html__('Shop menu', 'wojewodastudio'),
+				'header-menu' => 'Menu główne',
+				'footer'      => 'Stopka'
 			]
 		);
 	}

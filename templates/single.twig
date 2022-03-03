@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<article class="l-flow | c-article-content | basis-[680px] | post-type-{{ post.post_type }}"
+			 data-flow-size="lg">
+		{% include 'partial/article-header.twig' with {'show_excerpt': false} %}
+
+		{{ post.content }}
+
+		{% if post.next or post.prev %}
+			<nav class="my-12 [ lg:flex lg:justify-center ] [ lg:border-solid lg:border-white lg:border-0 lg:border-t-2 ]" aria-label="{{ _e('Post') }}">
+				{% if post.prev %}
+					<a class="l-flow | block | text-right [ border-solid border-white border-0 border-y-2 lg:border-0 ] [ py-12 ]"
+					   href="{{ post.prev.link }}"
+					   data-flow-size="xs">
+						<span class="[ text-xs text-dark font-black uppercase ] block"><span class="rotate-180">&#10142;</span> Poprzedni artykuł</span>
+						<span class="block | font-bold | text-md">{{ post.prev.title }}</span>
+					</a>
+				{% endif %}
+				{% if post.next %}
+					<a class="l-flow | block | text-left [ border-solid border-white border-0 border-y-2 lg:border-0 ] [ py-12 ]"
+					   href="{{ post.next.link }}"
+					   data-flow-size="xs">
+						<span class="[ text-xs text-dark font-black uppercase ] block">Następny artykuł &#10142;</span>
+						<span class="block | font-bold | text-md">{{ post.next.title }}</span>
+					</a>
+				{% endif %}
+			</nav>
+		{% endif %}
+	</article>
+{% endblock %}

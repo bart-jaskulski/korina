@@ -40,6 +40,7 @@
 	"dependencies": {
 		"@glidejs/glide": "^3.5.2",
 		"dialog-polyfill": "^0.5.6",
-		"element-ready": "^6.2.0"
+		"element-ready": "^6.2.0",
+		"the-new-css-reset": "^1.4.9"
 	}
 }

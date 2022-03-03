@@ -1,0 +1,17 @@
+.c-dropdown {
+  list-style: none;
+}
+
+.c-dropdown__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c-dropdown .c-dropdown__icon {
+  transform: rotateZ(0deg);
+}
+
+.c-dropdown[open] .c-dropdown__icon {
+  transform: rotateZ(180deg);
+}

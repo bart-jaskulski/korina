@@ -1,0 +1,46 @@
+{% extends 'woocommerce.twig' %}
+
+{% block content %}
+	{% do action('woocommerce_before_main_content') %}
+
+	<div class="flex-grow">
+
+		<div class="before-shop-loop">
+			{{ shop }}
+			<h1 class="uppercase font-black text-xl [ mt-6 ]">{{ fn('woocommerce_page_title') }}</h1>
+			{% if description %}
+				<hr class="w-full [ clear-both ] [ border-solid border-white border-0 border-b ] my-4">
+				<div aria-expanded="false" class="l-flow | js-reveal-text | max-h-[168px] lg:max-h-[48px] overflow-hidden | [ transition-all duration-300 ]" data-flow-size="xs">
+					{{ description }}
+				</div>
+				<button class="js-reveal-text-button | c-reveal-text"><i class="icon-down-open"></i></button>
+				<hr class="w-full [ clear-both ] [ border-solid border-white border-0 border-b ] my-4">
+			{% endif %}
+			{% do action('woocommerce_before_shop_loop') %}
+		</div>
+		<hr class="w-full [ clear-both ] [ border-solid border-white border-b-2 ] my-4">
+		{% if products|length > 0 %}
+			<div class="grid [ grid-cols-2 lg:grid-cols-4 ] [ gap-6 mt-8 ]">
+				{% for post in products %}
+					{% set product = fn('wc_get_product', post.id) %}
+					{% include ["partial/tease-product.twig"] with {post: post, product: product} %}
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="l-flow | text-center | mt-16" data-flow-size="md">
+				{% if request.get.s %}
+					<p class="font-bold text-lg">Brak wyników dla "{{ request.get.s }}"</p>
+				{% else %}
+					<p class="font-bold text-lg">Brak wyników</p>
+				{% endif %}
+				<p class="text-gray">Spróbuj innych słów kluczowych, lub wyczyść filtry.</p>
+				<button class="wpfClearButton c-button">Wyczyść filtry</button>
+			</div>
+		{% endif %}
+
+		{% do action('woocommerce_after_shop_loop') %}
+		{% include 'partial/pagination.twig' with {'posts': products} %}
+		{% do action('woocommerce_after_main_content') %}
+	</div>
+
+{% endblock  %}

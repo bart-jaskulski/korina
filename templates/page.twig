@@ -1,0 +1,10 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{{ parent() }}
+	<article class="l-container | post-type-{{post.post_type}}">
+		<div class="article-body l-flow" data-flow-size="lg">
+			{{post.content}}
+		</div>
+	</article>
+{% endblock %}

@@ -1,18 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace CleanWeb\Extensions\WooCommerce;
-
-use CleanWeb\Theme;
 
 class SliderMeta implements \CleanWeb\Component {
 
 	public const IMAGES = 'slider_images';
 
-	private static array $manifest;
-
-	public function __construct() {
-		self::$manifest = json_decode( file_get_contents( get_stylesheet_directory() . '/manifest.json' ), true );
-	}
+	public function __construct(
+            private array $manifest
+    ) {}
 
 	public function initialize(): void {
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_box' ] );
@@ -22,7 +19,7 @@ class SliderMeta implements \CleanWeb\Component {
 
 	public function enqueue_scripts(): void {
 		wp_enqueue_media();
-		wp_enqueue_script( 'slider', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . self::$manifest['assets/js/admin.ts'], Theme::VERSION );
+//		wp_enqueue_script( 'slider', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/js/admin.ts'], Theme::VERSION );
 	}
 
 	public function register_meta_box(): void {

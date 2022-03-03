@@ -1,0 +1,35 @@
+<header>
+	{% if post.thumbnail %}
+		{% if links %}<a href="{{ post.link }}">{% endif %}
+		<picture>
+			<source srcset="{{ post.thumbnail.src|resize(680) }} 600w, {{ post.thumbnail.src|resize(680)|retina(2) }} 2x"/>
+			<source srcset="{{ post.thumbnail.src|resize(320) }}, {{ post.thumbnail.src|resize(320)|retina(2) }} 2x"/>
+			<img class="object-cover | md:w-[680px]"
+				 src="{{ post.thumbnail.src|resize(320) }}"
+				 width="680"
+				 height="320"
+				 alt="{{ post.thumbnail.alt }}"/>
+		</picture>
+		{% if links %}</a>{% endif %}
+	{% endif %}
+	<div class="c-article-details [ font-black uppercase text-xs ] [ my-4 ]">
+		<time class="text-dark" datetime="{{ post.date('Y-m-d H:i:s') }}">{{ post.date }}</time>
+		<span class="text-dark">{{ post.author.name }}</span>
+		{% for term in post.terms({ taxonomy: 'category' }) %}
+			<a class="" href="{{ term.link }}">{{ term.title }}</a>
+			{{ not loop.last ? ', ' }}
+		{% endfor %}
+	</div>
+	<hr class="[ border-2 border-solid border-white ] w-12 [ mb-4 ]">
+	<h1 class="[ font-black text-lg lg:text-2xl ] mb-4">
+		{% if links %}<a class="text-xl lg:text-2xl" href="{{ post.link }}">{% endif %}
+			{{ post.title }}
+		{% if links %}</a>{% endif %}
+	</h1>
+	{% if show_excerpt %}
+	<p class="text-gray text-[21px]">
+		{{ post.excerpt }}
+	</p>
+		<a class="c-button | uppercase | my-4 px-6" data-button-type="filled" href="{{ post.link }}">Czytaj więcej</a>
+	{% endif %}
+</header>

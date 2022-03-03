@@ -1,0 +1,55 @@
+{% extends "woocommerce.twig" %}
+
+{% block content %}
+	<article itemscope itemtype="http://schema.org/Product" class="flex-1 | w-full | single-product-details [ {{ post.class }} ]">
+		<aside>
+			{% do action('woocommerce_before_single_product') %}
+		</aside>
+
+		<header class="lg:flex [ gap-24 mb-20 ]">
+			{% if post.thumbnail %}
+				<img src="{{ post.thumbnail.src('shop_single') }}"
+					 alt="{{ post.thumbnail.alt }}"
+					 class="w-full md:w-[450px] h-auto aspect-square grow-0"
+					 width="450"
+					 height="450"/>
+			{% else %}
+				<img class="bg-dark w-full md:w-[450px] h-auto aspect-square grow-0" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" width="450" height="450"/>
+			{% endif %}
+
+			<div class="l-flow | w-full [ text-left uppercase ]" data-flow-size="sm">
+				{% if product.get_attribute('producent') %}
+					<a href="{{ fn('get_attribute_link', product.get_attribute('producent'), 'producent') }}" class="normal-case">
+						{{ product.get_attribute('producent') }}
+					</a>
+				{% endif %}
+				<h1 class="font-black text-lg">{{ post.title }}</h1>
+				{{ fn('woocommerce_template_single_add_to_cart') }}
+				<p class="text-gray">Dostępność: {{ product.is_in_stock() ? 'w magazynie' : 'brak' }}</p>
+				<div class="flex justify-between items-baseline">
+					<p class="font-bold">Cena</p>
+					<p class="font-black text-lg">{{ product.get_price_html() }}</p>
+				</div>
+			</div>
+		</header>
+
+		{% do action('woocommerce_after_single_product_summary') %}
+
+		<meta itemprop="url" content="{{ post.link }}" />
+
+	</article>
+
+	<section class="flex-auto w-full [ mt-20 mb-6 ]" aria-labelledby="podobne-produkty">
+		<h3 class="[ uppercase font-black ]" id="podobne-produkty">Podobne produkty</h3>
+		<hr class="[ border-solid border-white border-b-2 ] [ mt-2 mb-8 ]"/>
+		<div class="grid [ grid-cols-2 lg:grid-cols-4 ] [ gap-8 ]">
+			{% for related in related_products %}
+				{% set related_product = fn('wc_get_product', related.id) %}
+				{% include ["partial/tease-product.twig"] with { post: related, product: related_product } %}
+			{% endfor %}
+		</div>
+	</section>
+
+	{#{% do action('woocommerce_after_single_product') %}#}
+
+{% endblock  %}

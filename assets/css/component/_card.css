@@ -1,0 +1,8 @@
+.c-card {
+  box-shadow: var(--card-shadow, none);
+  border-style: solid;
+  border-width: var(--card-border, 1px);
+  border-color: var(--color-pale);
+  border-radius: var(--card-border-radius, 4px);
+  background: var(--white);
+}

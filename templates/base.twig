@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" {{ site.language_attributes }}>
+<head>
+	<meta charset="{{ site.charset }}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="{{ site.description }}">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<script>document.documentElement.classList.remove('no-js')</script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39264004-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-39264004-1');
+	</script>
+	<!-- Facebook Pixel Code -->
+	<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '1358100184400758');
+		fbq('track', 'PageView');
+	</script>
+	<noscript>
+		<img height="1" width="1" style="display:none"
+				   src="https://www.facebook.com/tr?id=1358100184400758&ev=PageView&noscript=1"
+		/>
+	</noscript>
+	<!-- End Facebook Pixel Code -->
+	<meta name="facebook-domain-verification" content="ej53g60dk3jj25hj0g24js0qonz0ql" />
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "HairSalon",
+			"name": "Krystian Wojewoda Hair Design",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "UL. PIOTRKOWSKA 293/305",
+				"addressLocality": "Łódź",
+				"addressRegion": "PL",
+				"postalCode": "90-369"
+			},
+			"image": "https://wojewodastudio.pl/wp-content/uploads/2020/06/logo-KWHD-mini-1-76x0-c-default.png",
+			"email": "KRYSTIAN.WOJEWODA@GMAIL.COM",
+			"telePhone": "730 796 861",
+			"url": "https://wojewodastudio.pl/",
+			"paymentAccepted": [ "cash", "credit card" ],
+			"openingHours": "Mo,Tu,We,Th,Fr 09:00-21:00",
+			"openingHoursSpecification": [ {
+				"@type": "OpeningHoursSpecification",
+				"dayOfWeek": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday",
+					"Friday"
+				],
+				"opens": "09:00",
+				"closes": "21:00"
+			} ],
+			"priceRange":"$$"
+
+		}
+	</script>
+	{{function('wp_head')}}
+	{% block head %}
+	{% endblock %}
+</head>
+
+<body class="relative | flex | flex-col | justify-between | min-h-screen | gap-4 [ {{body_class}} ]">
+<a class="sr-only" href="#content">{{ _e( 'Przejdź do treści') }}</a>
+
+{% block header %}
+	{% include "partial/header.twig" %}
+{% endblock %}
+
+<main class="l-container [ flex flex-wrap justify-between ] [ mb-auto ]" id="content">
+	{% block content %}
+			<header class="l-flow | my-8 | uppercase">
+				{% block content_header %}
+				<h1 class="l-container | w-full [ font-black text-3xl lg:text-2xl ] [ text-center md:text-left ] text-white">
+					{{ post.title ?: title ?: fn('the_title') }}
+				</h1>
+				{% endblock content_header %}
+			</header>
+	{% endblock %}
+	{% if sidebar %}
+		<aside class="[ hidden lg:block ] basis-[200px]">
+			{{ sidebar }}
+		</aside>
+	{% endif %}
+</main>
+
+{% block footer %}
+	{% include "partial/footer.twig" %}
+{% endblock %}
+</body>
+</html>

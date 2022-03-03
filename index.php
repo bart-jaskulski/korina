@@ -3,11 +3,7 @@
 get_header();
 
 if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-
-		get_template_part( 'entry' );
-	}
+	get_template_part( 'templates/entry', args: [ 'posts' => get_posts() ] );
 } else {
 	echo 'No posts found!';
 }

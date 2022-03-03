@@ -1,0 +1,37 @@
+.c-button {
+  width: var(--button-width, max-content);
+  max-width: stretch;
+  display: var(--button-display, inline-block);
+  cursor: pointer;
+  text-decoration: none;
+  padding: 14px 18px;
+  font-weight: var(--font-bold, 700);
+  font-size: var(--text-base, 14px);
+  line-height: var(--line-height, 1.5);
+  background-color: var(--button-background, var(--color-primary));
+  color: var(--button-color, var(--white));
+  border: var(--button-border, none);
+  text-align: var(--button-align, left);
+}
+
+.c-button[data-button-type="filled"] {
+  --button-color: var(--white);
+  --button-background: var(--color-primary);
+}
+
+.c-button[data-button-type="outline"] {
+  --button-color: var(--color-primary);
+  --button-background: transparent;
+  --button-border: 1px solid var(--button-color);
+}
+
+.c-button[data-button-width="full"] {
+  --button-width: 100%;
+  --button-align: center;
+}
+
+.c-button:is([disabled]) {
+  --button-color: var(--gray-3, #555);
+  --button-background: var(--gray-3, #555);
+}
+

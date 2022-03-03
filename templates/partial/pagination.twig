@@ -1,0 +1,41 @@
+{% if posts.pagination.pages is not empty %}
+    <nav class="c-pagination mt-16">
+        <ul class="flex flex-wrap justify-center items-center | gap-2">
+
+            {# Previous #}
+            {% if posts.pagination.prev %}
+                <li class="">
+                    <a class="c-pagination__item" href="{{ posts.pagination.prev.link }}"><i class="icon-left-open"></i></a>
+                </li>
+            {% else %}
+                <li class="">
+                    <button class="c-pagination__item" disabled><i class="icon-left-open"></i></button>
+                </li>
+            {% endif %}
+
+            {# Pages #}
+            {% for page in posts.pagination.pages %}
+                {% if page.link %}
+                    <li>
+                        <a href="{{ page.link }}" class="c-pagination__item">{{ page.title }}</a>
+                    </li>
+                {% else %}
+                    <li class="">
+                        <span aria-current="page" class="c-pagination__item">{{ page.title }}</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {# Next #}
+            {% if posts.pagination.next %}
+                <li class="">
+                    <a class="c-pagination__item" href="{{ posts.pagination.next.link }}"><i class="icon-right-open"></i></a>
+                </li>
+            {% else %}
+                <li class="">
+                    <button class="c-pagination__item" disabled><i class="icon-right-open"></i></button>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

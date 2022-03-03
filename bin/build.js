@@ -49,6 +49,7 @@ if (process.argv.includes('build')) return 0
 bs.watch(config.watchAssets, (event) => {
   if (event !== 'change') return;
 
+  require('child_process').execSync('rm -rf ./dist')
   build();
   bs.reload()
 })
