@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php else : ?>
 
-		<h1 class="uppercase text-lg my-8"><i class="icon-ok mr-2 [ text-black bg-white ] [ text-center ] inline-block | rounded-full [ w-[40px] aspect-square ]"></i> Dziękujemy za Twoje zamówienie</h1>
+		<h1 class="uppercase text-lg my-8"><i class="icon-tick mr-2 [ text-black bg-white ] [ text-center ] inline-block | rounded-full [ w-[40px] aspect-square ]"></i> Dziękujemy za Twoje zamówienie</h1>
 
 		<table class="c-woocommerce-order-completed">
 			<tr>

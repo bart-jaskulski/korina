@@ -1,11 +1,5 @@
-<aside class="[ hidden lg:block ] basis-[200px]">
-	<?php get_sidebar(); ?>
-</aside>
 </main>
-<footer id="footer">
-
-	<?php wp_footer(); ?>
-</footer>
+<?php get_template_part('templates/partial/footer'); ?>
 
 </body>
 </html>

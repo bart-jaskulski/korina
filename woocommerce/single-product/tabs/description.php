@@ -19,6 +19,4 @@ defined( 'ABSPATH' ) || exit;
 
 global $post;
 
-?>
-
-<?php the_content(); ?>
+the_content();

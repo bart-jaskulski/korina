@@ -18,5 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+$cols_class = wc_get_loop_prop( 'columns' ) === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3';
 ?>
-<ul class="products columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?>">
+<ul class="products gap-6 grid | grid-cols-2 <?php echo esc_attr( $cols_class ); ?>">

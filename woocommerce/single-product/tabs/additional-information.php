@@ -18,6 +18,5 @@
 defined( 'ABSPATH' ) || exit;
 
 global $product;
-?>
 
-<?php do_action( 'woocommerce_product_additional_information', $product ); ?>
+do_action( 'woocommerce_product_additional_information', $product );

@@ -30,17 +30,17 @@ if ( $cross_sells ) : ?>
 
 				setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-				$context['post'] = Timber::get_post($post_object);
+				$context['post']    = Timber::get_post( $post_object );
 				$context['product'] = $cross_sell;
 
-				Timber::render('partial/tease-product.twig', $context);
+				Timber::render( 'partial/tease-product.twig', $context );
 				?>
 
 			<?php endforeach; ?>
 		</div>
 
 	</div>
-<?php
+	<?php
 endif;
 
 wp_reset_postdata();

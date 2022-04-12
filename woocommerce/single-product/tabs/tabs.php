@@ -42,17 +42,17 @@ if ( ! empty( $product_tabs ) ) : ?>
 
 		spicy-sections[affordance="tab-bar"] [role="tabpanel"] {
 			padding-top: 2rem;
-			border-top: 1px solid var(--white);
+			border-top: 1px solid var(--neutral-3);
 		}
 
 		spicy-sections[affordance="tab-bar"] h2 {
-			font-size: 24px;
-			padding: 0.75rem;
-			margin-inline-end: 2rem;
+			padding: 16px 24px;
+			/*margin-inline-end: 2rem;*/
 			cursor: pointer;
 		}
 		spicy-sections[affordance="tab-bar"] h2[tabindex="0"] {
-			border-bottom: 6px solid var(--white);
+			border-bottom: 3px solid var(--color-primary);
+			color: var(--color-primary);
 		}
 
 		spicy-sections[affordance="tab-bar"] h2:not([tabindex="0"]) {
@@ -74,7 +74,7 @@ if ( ! empty( $product_tabs ) ) : ?>
 
 	<spicy-sections>
 		<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
-			<h2 class="[ text-base lg:text-xl ] cursor-pointer"><?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?></h2>
+			<h2 class="[ text-base ] cursor-pointer"><?php echo wp_kses_post( apply_filters( 'woocommerce_product_' . $key . '_tab_title', $product_tab['title'], $key ) ); ?></h2>
 			<div class="l-flow">
 				<?php
 				if ( isset( $product_tab['callback'] ) ) :

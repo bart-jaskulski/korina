@@ -18,4 +18,21 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<p class="woocommerce-info"><?php esc_html_e( 'No products were found matching your selection.', 'woocommerce' ); ?></p>
+<div class="flex flex-wrap gap-8">
+	<?php if ( is_active_sidebar( 'shop-sidebar' ) ) : ?>
+		<aside class="[ hidden lg:block ] c-products-filters shrink-0">
+			<?php dynamic_sidebar( 'shop-sidebar' ); ?>
+		</aside>
+	<?php endif; ?>
+	<div class="l-products-list shrink">
+		<div class='pagination [ flex flex-wrap justify-end items-center ] [ mb-9 gap-6 ]'>
+			<?php woocommerce_catalog_ordering(); ?>
+			<?php woocommerce_pagination(); ?>
+			<?php do_action( 'cleanweb/archive/filter_chips' ); ?>
+		</div>
+		<div>
+			<p class='woocommerce-info'>Nie znaleziono żadnych produktów</p>
+		</div>
+	</div>
+
+</div>

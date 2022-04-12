@@ -22,15 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $related_products ) : ?>
 
 	<section class="related products">
-
-		<?php
-		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
-
-		if ( $heading ) :
-			?>
-			<h4><?php echo esc_html( $heading ); ?></h4>
-		<?php endif; ?>
-
+		<h3 class="text-md font-bold | mb-6 ">Powiązane produkty</h3>
 		<?php woocommerce_product_loop_start(); ?>
 
 			<?php foreach ( $related_products as $related_product ) : ?>

@@ -13,62 +13,56 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
  * @version 3.6.0
+ * @fc-version 1.5.0
  * @global WC_Checkout $checkout
  */
 
 defined( 'ABSPATH' ) || exit;
+
+$collapsible_initial_state = WC()->cart->needs_shipping_address() && FluidCheckout_Steps::instance()->is_shipping_country_allowed_for_billing() === null ? 'expanded' : ( $is_billing_same_as_shipping ? 'collapsed' : 'expanded' );
 ?>
+
 <div class="woocommerce-billing-fields">
-	<?php if ( wc_ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
-
-		<h3><?php esc_html_e( 'Billing &amp; Shipping', 'woocommerce' ); ?></h3>
-
-	<?php else : ?>
-
-		<h3><?php esc_html_e( 'Billing details', 'woocommerce' ); ?></h3>
-
-	<?php endif; ?>
+	<?php // CHANGE: Remove billing section title ?>
 
 	<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
 
-	<div class="l-flow | woocommerce-billing-fields__field-wrapper" data-flow-size="lg">
-		<?php
-		$fields = $checkout->get_checkout_fields( 'billing' );
+	<?php // CHANGE: Add markup for collapsible-block component ?>
+	<div id="woocommerce-billing-fields__field-wrapper" class="woocommerce-billing-fields__field-wrapper <?php echo 'collapsed' === $collapsible_initial_state ? 'is-collapsed' : ''; ?>" data-collapsible data-collapsible-content data-collapsible-initial-state="<?php echo esc_attr( $collapsible_initial_state ); ?>">
+		<div class="collapsible-content__inner">
+			<?php // CHANGE: Display billing fields which might be copied from shipping fields ?>
+			<?php
+			foreach ( $billing_same_as_shipping_fields as $key => $field ) {
+				woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
+			}
+			?>
+			<?php // CHANGE: Add markup for collapsible-block component ?>
+		</div>
+	</div>
 
-		foreach ( $fields as $key => $field ) {
+	<?php // CHANGE: Add action hook before the billing only fields ?>
+	<?php do_action( 'fc_before_checkout_billing_only_form', $checkout ); ?>
+
+	<?php // CHANGE: Display billing only fields ?>
+	<?php if ( count( $billing_only_fields ) > 0 ) : ?>
+	<div class="woocommerce-billing-only-fields__field-wrapper">
+		<?php
+		foreach ( $billing_only_fields as $key => $field ) {
 			woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
 		}
 		?>
 	</div>
+	<?php endif; ?>
+
+	<?php
+	// CHANGE: Added for compatibility with plugins that use this action hook
+	do_action( 'woocommerce_checkout_billing', $checkout );
+	?>
 
 	<?php do_action( 'woocommerce_after_checkout_billing_form', $checkout ); ?>
 </div>
 
-<?php if ( ! is_user_logged_in() && $checkout->is_registration_enabled() ) : ?>
-	<div class="woocommerce-account-fields">
-		<?php if ( ! $checkout->is_registration_required() ) : ?>
-
-			<p class="form-row form-row-wide create-account">
-				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-					<input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" id="createaccount" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true ); ?> type="checkbox" name="createaccount" value="1" /> <span><?php esc_html_e( 'Create an account?', 'woocommerce' ); ?></span>
-				</label>
-			</p>
-
-		<?php endif; ?>
-
-		<?php do_action( 'woocommerce_before_checkout_registration_form', $checkout ); ?>
-
-		<?php if ( $checkout->get_checkout_fields( 'account' ) ) : ?>
-
-			<div class="create-account">
-				<?php foreach ( $checkout->get_checkout_fields( 'account' ) as $key => $field ) : ?>
-					<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
-				<?php endforeach; ?>
-				<div class="clear"></div>
-			</div>
-
-		<?php endif; ?>
-
-		<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
-	</div>
-<?php endif; ?>
+<?php
+	// CHANGE: Added for compatibility with plugins that use this action hook
+	do_action( 'woocommerce_checkout_after_customer_details' );
+?>

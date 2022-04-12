@@ -24,10 +24,10 @@ global $product;
 echo apply_filters(
 	'woocommerce_loop_add_to_cart_link', // WPCS: XSS ok.
 	sprintf(
-		'<a href="%s" data-quantity="%s" class="c-button | block [ %s ]" data-button-width="full" data-button-type="filled" %s>%s</a>',
+		'<a href="%s" data-quantity="%s" class="c-button | py-3 | text-sm | a-add-to-cart | block | absolute bottom-2 [ %s ]" style="--button-width: calc(100%% - 1rem);" data-button-width="full" data-button-type="filled" %s>%s</a>',
 		esc_url( $product->add_to_cart_url() ),
-		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-		esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+		esc_attr( $args['quantity'] ?? 1 ),
+		esc_attr( $args['class'] ?? 'button' ),
 		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
 		esc_html( $product->add_to_cart_text() )
 	),
