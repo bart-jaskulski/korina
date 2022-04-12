@@ -27,12 +27,12 @@ final class Cleanup implements Component {
 		remove_action( 'wp_head', 'rsd_link' );
 		remove_action( 'wp_head', 'wlwmanifest_link' );
 
-		add_action('wp_enqueue_scripts', [$this, 'remove_scripts']);
+		add_action( 'wp_enqueue_scripts', [ $this, 'remove_scripts' ] );
 	}
 
 	public function remove_scripts(): void {
-		wp_dequeue_style('frontend.filters');
-//		wp_dequeue_style('frontend.multiselect');
+		wp_dequeue_style( 'frontend.filters' );
+		// wp_dequeue_style('frontend.multiselect');
 	}
 
 	public function disable_emojicons_tinymce( $plugins ): array {

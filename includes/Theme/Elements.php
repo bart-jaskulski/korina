@@ -12,59 +12,28 @@ final class Elements implements Component {
 
 	public function initialize(): void {
 		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ] );
-		add_action( 'widgets_init', [ $this, 'register_widget_area' ] );
+		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
 	}
 
 	public function register_nav_menus(): void {
 		register_nav_menus(
 			[
 				'header-menu' => 'Menu główne',
-				'footer'      => 'Stopka'
+				'footer-menu' => 'Menu w stopce',
 			]
 		);
 	}
 
-	public function register_widget_area(): void {
+	public function register_widgets(): void {
+		$this->register_widget_area( 'footer_contact', 'Stopka - Dane kontaktowe' );
+		$this->register_widget_area( 'shop-sidebar', 'Sklep - Filtry' );
+	}
+
+	private function register_widget_area( string $id, string $name ): void {
 		register_sidebar(
 			[
-				'name'           => esc_html__( 'Footer', 'wojewodastudio' ),
-				'id'             => 'footer',
-				'before_sidebar' => '',
-				'after_sidebar'  => '',
-				'before_widget'  => '',
-				'after_widget'   => '',
-				'before_title'   => '',
-				'after_title'    => '',
-			]
-		);
-		register_sidebar(
-			[
-				'name'           => esc_html__( 'Blog', 'wojewodastudio' ),
-				'id'             => 'blog',
-				'before_sidebar' => '',
-				'after_sidebar'  => '',
-				'before_widget'  => '',
-				'after_widget'   => '',
-				'before_title'   => '',
-				'after_title'    => '',
-			]
-		);
-		register_sidebar(
-			[
-				'name'           => esc_html__( 'Shop', 'wojewodastudio' ),
-				'id'             => 'shop',
-				'before_sidebar' => '',
-				'after_sidebar'  => '',
-				'before_widget'  => '',
-				'after_widget'   => '',
-				'before_title'   => '',
-				'after_title'    => '',
-			]
-		);
-		register_sidebar(
-			[
-				'name'           => esc_html__( 'Search', 'wojewodastudio' ),
-				'id'             => 'search',
+				'name'           => $name,
+				'id'             => $id,
 				'before_sidebar' => '',
 				'after_sidebar'  => '',
 				'before_widget'  => '',

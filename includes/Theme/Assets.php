@@ -3,16 +3,14 @@
 namespace CleanWeb\Theme;
 
 use CleanWeb\Component;
+use CleanWeb\Extensions\Manifest;
 use CleanWeb\Theme;
 use LogicException;
 
 final class Assets implements Component {
 
-	/**
-	 * @param string[] $manifest
-	 */
 	public function __construct(
-		private array $manifest
+		private Manifest $manifest
 	) {}
 
 	public function initialize(): void {
@@ -21,18 +19,16 @@ final class Assets implements Component {
 	}
 
 	private function get_asset( string $asset_path ): string {
-		return isset( $this->manifest[ $asset_path ] ) ?
-			get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest[ $asset_path ] :
+		return $this->manifest->has( $asset_path ) ?
+			get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest->get( $asset_path ) :
 			throw new LogicException();
 	}
 
 	public function enqueue_scripts_and_styles(): void {
-		wp_enqueue_style('font', 'https://fonts.googleapis.com/css2?family=Lato&display=swap', [], 1);
+		wp_enqueue_style( 'font', 'https://fonts.googleapis.com/css2?family=Lato&display=swap', [], 1 );
 		wp_enqueue_style( 'main', $this->get_asset( 'assets/css/style.css' ), [], Theme::VERSION );
-		// wp_enqueue_style( 'kwhd', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/css/style.css'], [], Theme::VERSION );
-		// wp_enqueue_style( 'kwhd-old', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/css/old.css'], [], Theme::VERSION );
-		// wp_enqueue_script( 'kwhd', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/js/index.ts'], [], Theme::VERSION, true );
-		// wp_enqueue_style( 'shop', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/css/shop.css'], [], Theme::VERSION );
+		wp_enqueue_script( 'increment-input', $this->get_asset( 'assets/js/increment-input.ts' ), [], Theme::VERSION, true );
+		wp_enqueue_script( 'main', $this->get_asset( 'assets/js/index.ts' ), [], Theme::VERSION, true );
 	}
 
 	public function add_editor_styles(): void {

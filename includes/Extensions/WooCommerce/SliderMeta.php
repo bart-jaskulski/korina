@@ -3,13 +3,15 @@ declare(strict_types=1);
 
 namespace CleanWeb\Extensions\WooCommerce;
 
+use CleanWeb\Extensions\Manifest;
+
 class SliderMeta implements \CleanWeb\Component {
 
 	public const IMAGES = 'slider_images';
 
 	public function __construct(
-            private array $manifest
-    ) {}
+			private Manifest $manifest
+	) {}
 
 	public function initialize(): void {
 		add_action( 'add_meta_boxes', [ $this, 'register_meta_box' ] );
@@ -19,7 +21,7 @@ class SliderMeta implements \CleanWeb\Component {
 
 	public function enqueue_scripts(): void {
 		wp_enqueue_media();
-//		wp_enqueue_script( 'slider', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/js/admin.ts'], Theme::VERSION );
+		// wp_enqueue_script( 'slider', get_stylesheet_directory_uri() . DIRECTORY_SEPARATOR . $this->manifest['assets/js/admin.ts'], Theme::VERSION );
 	}
 
 	public function register_meta_box(): void {
@@ -58,7 +60,7 @@ class SliderMeta implements \CleanWeb\Component {
 			}
 		</style>
 		<div id="slider-id">
-			<?php if (!empty($value)) : ?>
+			<?php if ( ! empty( $value ) ) : ?>
 				<?php foreach ( (array) $value as $single_attachment_url ) : ?>
 					<input type="hidden"
 						   value="<?php echo esc_url( $single_attachment_url ); ?>"
@@ -69,7 +71,7 @@ class SliderMeta implements \CleanWeb\Component {
 				<a class="js-add-attachment" href="#">Dodaj zdjęcia do slidera</a>
 			</p>
 			<div class="js-attachments-container">
-				<?php if (!empty($value)) : ?>
+				<?php if ( ! empty( $value ) ) : ?>
 					<?php foreach ( (array) $value as $single_attachment_url ) : ?>
 						<p>
 							<img src="<?php echo esc_url( $single_attachment_url ); ?>" width="200" alt=""/>
