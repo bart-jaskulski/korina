@@ -1,5 +1,5 @@
 /* .theme-theme selector is for development purposes. */
-body:is(.theme-theme, .theme-wojewoda) {
+body:is(.theme-theme, .theme-korina) {
   & .fc-wrapper .fc-checkout-step,
   & div.woocommerce form .fc-step__substep,
   & div.woocommerce form .fc-step__substep:is(
@@ -25,17 +25,58 @@ body:is(.theme-theme, .theme-wojewoda) {
   & .fc-checkout-header .fc-checkout__cart-link,
   & .fc-wrapper #payment ul.wc_payment_methods > li.wc_payment_method > input[type="radio"]:first-child:checked + label,
   & .fc-wrapper #payment ul.payment_methods > li.wc_payment_method .payment_box {
-    background-color: var(--black);
+    background-color: var(--white);
   }
 
   & .fc-progress-bar {
     display: none;
   }
 
-  @media (min-width: 1200px) {
-    &.woocommerce-checkout .fc-container {
-      padding: 0 !important;
-      max-width: 100% !important;
+  &.woocommerce-checkout .fc-content.fc-container {
+    max-width: auto;
+    padding: 0
+  }
+
+  & form.woocommerce-checkout .fc-wrapper {
+    & .fc-checkout-order-review .fc-checkout-order-review__inner {
+      padding: 32px;
+    }
+
+    & #order_review table.woocommerce-checkout-review-order-table {
+      margin: auto;
+      width: 100%;
+
+      & .product-details {
+        padding: 0;
+        width: auto;
+        float: none;
+      }
+
+      & td,
+      & th {
+        padding: 8px 0;
+      }
+
+      & tbody td,
+      & tbody th {
+        padding: 32px 0;
+      }
+
+      & tr:first-child {
+        border: 0;
+
+        & .product-name,
+        & .product-total {
+          padding: 0;
+        }
+
+        & .product-total {
+          width: auto;
+          float: none;
+        }
+      }
+
     }
   }
+
 }
