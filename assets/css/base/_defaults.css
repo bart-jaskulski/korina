@@ -8,6 +8,7 @@ html {
   background-color: var(--site-background, transparent);
   color: var(--site-text, black);
   text-rendering: optimizeSpeed;
+  overflow-x: hidden;
 }
 
 summary {
@@ -18,13 +19,22 @@ summary {
   }
 }
 
-strong {
+strong,
+b {
   font-weight: var(--font-bold, 700);
+}
+
+em {
+  font-style: italic;
 }
 
 del {
   text-decoration: line-through;
-  color: var(--gray-3);
+  color: var(--gray-5);
+}
+
+small {
+  font-size: 80%;
 }
 
 input[type="checkbox"],
@@ -40,14 +50,12 @@ a {
   }
 
   &:hover {
-    text-decoration: underline;
-    text-underline-offset: 1ex;
   }
 }
 
 img {
-  width: 100%;
   object-fit: cover;
+  display: block;
 }
 
 dialog::backdrop {
@@ -77,15 +85,15 @@ dialog + .backdrop {
    */
 
 :where(input, select, textarea):where([class~="default"], :not([class])) {
-  background-color: var(--gray-0);
+  background-color: var(--neutral-3);
   font-size: 14px;
   border-radius: 3px;
-  border: 1px solid var(--gray-1);
+  border: 1px solid var(--gray-2);
   padding: 1.75ex;
   width: 100%;
 
   &::placeholder {
-    color: var(--gray-3);
+    color: var(--gray-6);
   }
 }
 

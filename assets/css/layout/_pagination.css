@@ -1,0 +1,17 @@
+ul.page-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+
+  & li > :is(span, a) {
+    display: block;
+    padding: 4px;
+
+    &[aria-current="page"] {
+      color: var(--color-primary);
+      font-weight: bold;
+      border-bottom: 2px solid currentColor;
+    }
+  }
+}

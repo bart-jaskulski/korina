@@ -1,0 +1,41 @@
+.c-single-product {
+  margin-bottom: 100px;
+
+  & .c-single-product__image,
+  & .c-single-product__product {
+    flex-basis: calc(50% - 1.5rem);
+    flex-grow: 1;
+  }
+
+  & .price {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    & del {
+      order: 2;
+      font-size: 14px;
+    }
+
+    & ins {
+      order: 1;
+      font-weight: bold;
+      color: var(--red);
+    }
+  }
+}
+
+.c-product-details {
+  & > :is(dt, dd) {
+    flex-basis: 50%;
+    line-height: 24px;
+  }
+
+  & > dt {
+    font-weight: 700;
+
+    &::after {
+      content: ":";
+    }
+  }
+}

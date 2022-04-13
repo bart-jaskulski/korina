@@ -51,6 +51,7 @@ bs.watch(config.watchAssets, (event) => {
 
   require('child_process').execSync('rm -rf ./dist')
   build();
+  require('child_process').execSync('mkdir -p ./dist/img && cp -r ./assets/img ./dist')
   bs.reload()
 })
 

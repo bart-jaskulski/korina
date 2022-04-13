@@ -10,23 +10,12 @@
   margin-right: 0.2em;
   text-align: center;
 
-  /* opacity: .8; */
-
   /* For safety - reset parent styles, that can break glyph codes */
   font-variant: normal;
   text-transform: none;
 
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-
-  /* Animation center compensation - margins should be symmetric */
-
-  /* remove if not needed */
-  margin-left: 0.2em;
-
-  /* you can be more comfortable with increased icons size */
-
-  /* font-size: 120%; */
 
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
@@ -37,24 +26,42 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-search::before { content: "\e800"; } /* '' */
-.icon-plus-circled::before { content: "\e801"; } /* '' */
-.icon-location::before { content: "\e802"; } /* '' */
-.icon-minus-circled::before { content: "\e803"; } /* '' */
-.icon-down-open::before { content: "\e804"; } /* '' */
-.icon-left-open::before { content: "\e805"; } /* '' */
-.icon-right-open::before { content: "\e806"; } /* '' */
-.icon-up-open::before { content: "\e807"; } /* '' */
-.icon-ok::before { content: "\e808"; } /* '' */
-.icon-cancel::before { content: "\e809"; } /* '' */
+.icon-right-bold::before { content: "\e800"; } /* '' */
+.icon-account::before { content: "\e802"; } /* '' */
+.icon-tick::before { content: "\e804"; } /* '' */
+.icon-eye-on::before { content: "\e806"; } /* '' */
+.icon-eye-off::before { content: "\e807"; } /* '' */
+.icon-bus::before { content: "\e808"; } /* '' */
+.icon-logout::before { content: "\e809"; } /* '' */
+.icon-bag::before { content: "\e80a"; } /* '' */
+.icon-tick-round::before { content: "\e80b"; } /* '' */
+.icon-close-round::before { content: "\e80c"; } /* '' */
+.icon-trash::before { content: "\e80d"; } /* '' */
+.icon-close::before { content: "\e80e"; } /* '' */
+.icon-edit::before { content: "\e80f"; } /* '' */
+.icon-face::before { content: "\e810"; } /* '' */
+.icon-grid::before { content: "\e812"; } /* '' */
+.icon-left-thin::before { content: "\e813"; } /* '' */
+.icon-mail::before { content: "\e815"; } /* '' */
+.icon-phone::before { content: "\e816"; } /* '' */
+.icon-left-full::before {
+  content: "\e817";
+  margin-right: 1.5em;
+} /* '' */
+.icon-shield::before { content: "\e818"; } /* '' */
+.icon-star::before { content: "\e819"; } /* '' */
+.icon-stars::before { content: "\e81a"; } /* '' */
+.icon-tick-lg::before { content: "\e81b"; } /* '' */
+.icon-ticket::before { content: "\e81c"; } /* '' */
+.icon-time::before { content: "\e81d"; } /* '' */
+.icon-left-bold::before { content: "\e81e"; } /* '' */
+.icon-dot::before { content: "\e821"; } /* '' */
+.icon-question::before { content: "\e822"; } /* '' */
+.icon-lock::before { content: "\e823"; } /* '' */
+.icon-right-full::before { content: "\e824"; } /* '' */
+.icon-right-page::before { content: "\e825"; } /* '' */
+.icon-right-thin::before { content: "\e826"; } /* '' */
 .icon-twitter::before { content: "\f099"; } /* '' */
-.icon-facebook-1::before { content: "\f09a"; } /* '' */
-.icon-menu::before { content: "\f0c9"; } /* '' */
-.icon-mail::before { content: "\f0e0"; } /* '' */
+.icon-facebook::before { content: "\f09a"; } /* '' */
 .icon-instagram::before { content: "\f16d"; } /* '' */
-.icon-left::before { content: "\f177"; } /* '' */
-.icon-right::before { content: "\f178"; } /* '' */
-.icon-question-circle-o::before { content: "\f29c"; } /* '' */
-.icon-facebook::before { content: "\f308"; } /* '' */
-.icon-shopping-bag:before { content: '\f290'; } /* '' */
-.icon-sliders:before { content: '\f1de'; } /* '' */
+.icon-sliders::before { content: "\f1de"; } /* '' */

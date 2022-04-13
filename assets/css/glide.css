@@ -4,6 +4,22 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+
+  @media (--lg) {
+    & .glide__arrows {
+      opacity: 0;
+      transition: opacity 250ms ease-in;
+    }
+
+    &:hover .glide__arrows {
+      opacity: 1;
+    }
+  }
+
+}
+
+[data-hide-arrows="true"] .glide .glide__arrows {
+  display: none;
 }
 
 .glide * {
@@ -76,6 +92,7 @@
   cursor: pointer;
   transition: opacity 150ms ease, border 300ms ease-in-out;
   transform: translateY(-50%);
+  box-shadow: 0 3px 8px 0 rgb(0 0 0 / 8%);
   line-height: 1;
 }
 
@@ -88,11 +105,17 @@
 }
 
 .glide__arrow--left {
-  left: 0;
+  left: -16px;
+  @media (--lg) {
+    left: -26px;
+  }
 }
 
 .glide__arrow--right {
-  right: 0;
+  right: -16px;
+  @media (--lg) {
+    right: -26px;
+  }
 }
 
 .glide__arrow--disabled {

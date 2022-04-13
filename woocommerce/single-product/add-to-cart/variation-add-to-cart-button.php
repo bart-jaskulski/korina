@@ -13,7 +13,7 @@ global $product;
 ?>
 <div class="l-flow woocommerce-variation-add-to-cart variations_button">
 	<div class="flex flex-wrap justify-between">
-		<?php get_template_part( 'templates/partial/increment-input', args: ['product' => $product, 'quantity' => $_POST['quantity'] ] ); ?>
+		<?php get_template_part( 'templates/partial/increment-input', args: ['product' => $product, 'quantity' => $_POST['quantity'] ?? $product->get_min_purchase_quantity() ] ); ?>
 		<div class="woocommerce-variation single_variation"></div>
 	</div>
 

@@ -1,11 +1,14 @@
 {
 	"version": "1.0.0",
 	"assets": [
-		"assets/css/style.css"
+		"assets/css/style.css",
+		"assets/js/increment-input.ts",
+		"assets/js/index.ts"
 	],
 	"watchAssets": [
 		"templates/**/*.php",
 		"assets/**/*.(ts|css)",
-		"woocommerce/**/*.php"
+		"woocommerce/**/*.php",
+		"*.php"
 	]
 }

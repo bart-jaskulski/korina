@@ -1,0 +1,8 @@
+.l-lost-password,
+.l-encourage-creation,
+.l-create-account,
+.l-login {
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}

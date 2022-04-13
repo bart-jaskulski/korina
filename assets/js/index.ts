@@ -1,67 +1,139 @@
-// const rules = Array.from(document.styleSheets[3].cssRules)
-// const set = [...new Set(rules.map(rule => rule.selectorText).filter((e) => e?.startsWith('.wp-block')).map(e => e.split(/(\s|,|;)/)[0]))]
-
-import dialogPolyfill from 'dialog-polyfill';
 import elementReady from 'element-ready';
 import ensureMenuOpenCorrectly from './menu';
-import productSwapper from './product'
-import addFilterSupport from "./filter";
-import Glide from "@glidejs/glide";
+import Choices from "choices.js";
+import Glide, {Options} from "@glidejs/glide";
 
-async function initializeSlider() {
-	if (await elementReady('.glide')) {
-		new Glide('.glide').mount()
+async function initialize() {
+	if (await elementReady('select[name="orderby"]')) {
+		new Choices('select[name="orderby"]', {
+			allowHTML: false,
+			itemSelectText: '',
+			searchEnabled: false,
+		})
 	}
 }
 
-async function polyfillDialog() {
-	const dialog = await elementReady('dialog#product-search-dialog')
-	if (!dialog) return
-	dialogPolyfill.registerDialog(dialog)
 
-	document.querySelector('button.js-product-search')?.addEventListener('click', () => {
-		// @ts-ignore
-		dialog.showModal();
-		let closeDialog = (e: MouseEvent) => {
-			if (dialog === e.target) {
-				dialog.close()
-				dialog.removeEventListener('click', closeDialog)
-			}
-		};
-		dialog.addEventListener('click', closeDialog)
+async function mountGlider(selector: string, options: Options = {}): Promise<Glide.Properties|undefined> {
+	if (await elementReady(selector)) {
+		console.log('Mounting glider: ', selector);
+		const mq = window.matchMedia('(min-width: 64rem)');
+
+		if (mq.matches) {
+			options.perView = options.perView || 4;
+		}
+
+		const config = Object.assign({
+			perView: 2,
+			type: 'slider',
+			startAt: 0,
+			gap: 16,
+			bound: true
+		}, options);
+
+		let glide = new Glide(
+			selector,
+			config
+		).mount();
+
+		mq.addEventListener('change', (e) => {
+			console.log('Match. Changing items per view to ' + (e.matches ? 4 : 2));
+			glide.update({perView: e.matches ? 4 : 2})
+		})
+
+		return glide
+	}
+	return;
+}
+
+initialize()
+mountGlider('.c-new-products')
+mountGlider('.c-featured-products')
+
+/**
+ * Initialize glider if there are more than 1 product images
+ */
+async function initializeGliderForProductPage() {
+	if (await elementReady('.c-product-images')) {
+		const productImages = document.querySelector('.c-product-images')
+		if (productImages && productImages.getElementsByTagName('img').length > 1) {
+			mountGlider('.c-product-images', {perView: 1})
+		}
+	}
+}
+
+initializeGliderForProductPage()
+
+/**
+ * Show register for on button click
+ */
+async function showRegisterForm() {
+	if (await elementReady('.js-show-register-form')) {
+		const toggleHandler = document.querySelector('.js-show-register-form')
+		const untoggleHandler = document.querySelector('.js-hide-register-form')
+		if (! toggleHandler || ! untoggleHandler) return;
+
+		toggleHandler.addEventListener('click', (event) => {
+			event.preventDefault()
+			const formContainer = document.querySelector('.l-create-account')
+			if (! formContainer ) return;
+			formContainer.removeAttribute('aria-hidden')
+			toggleHandler.closest('div')?.setAttribute('aria-hidden', 'true')
+		})
+
+		untoggleHandler.addEventListener('click', (e) => {
+			e.preventDefault()
+			const formContainer = document.querySelector('.l-encourage-creation')
+			if (! formContainer ) return;
+			formContainer.removeAttribute('aria-hidden')
+			untoggleHandler.closest('div')?.setAttribute('aria-hidden', 'true')
+		})
+	}
+}
+
+showRegisterForm()
+
+
+/**
+ * Toggle between login and lost password forms
+ */
+async function toggleLoginForm() {
+	if (await elementReady('.js-return-login')) {
+		const toggleHandler = document.querySelector('.js-lost-password')
+		const untoggleHandler = document.querySelector('.js-return-login')
+		if (! toggleHandler || ! untoggleHandler) return;
+
+		toggleHandler.addEventListener('click', (event) => {
+			event.preventDefault()
+			const formContainer = document.querySelector('.l-lost-password')
+			if (! formContainer ) return;
+			formContainer.removeAttribute('aria-hidden')
+			toggleHandler.closest('.l-login')?.setAttribute('aria-hidden', 'true')
+		})
+
+		untoggleHandler.addEventListener('click', (e) => {
+			e.preventDefault()
+			const formContainer = document.querySelector('.l-login')
+			if (! formContainer ) return;
+			formContainer.removeAttribute('aria-hidden')
+			untoggleHandler.closest('.l-lost-password')?.setAttribute('aria-hidden', 'true')
+		})
+	}
+}
+
+toggleLoginForm()
+
+async function toggleMobileMenu() {
+	if ( ! await elementReady('.js-toggle-menu') ) return
+	const toggle = document.querySelector<HTMLButtonElement>('button.js-toggle-menu')
+	toggle.addEventListener('click', () => {
+		const menu = document.querySelector<HTMLElement>('.mega-menu')
+		if (!menu) return
+
+		menu.classList.toggle('!block')
+		toggle.toggleAttribute('aria-expanded')
+		menu.toggleAttribute('aria-hidden')
 	})
 }
 
-function categoryReveal() {
-	const reveal = document.querySelector<HTMLElement>('div.js-reveal-text')
-	const button = document.querySelector('button.js-reveal-text-button');
-
-	if (reveal && button) {
-		const maxHeight = Array.from(reveal.children)
-			.reduce((acc, {clientHeight}) => acc + clientHeight, 0)
-
-		button.addEventListener('click', () => {
-			button.toggleAttribute('data-rotated')
-
-			if (reveal.style.maxHeight) {
-				reveal.style.maxHeight = '';
-				reveal.setAttribute('aria-expanded', "false")
-			} else {
-				reveal.style.maxHeight = `${maxHeight}px`
-				reveal.setAttribute('aria-expanded', "true")
-			}
-		})
-	}
-
-
-}
-
-polyfillDialog()
-initializeSlider()
-addFilterSupport()
-productSwapper()
-categoryReveal()
-
-const mq = window.matchMedia('(min-width: 64rem)');
-ensureMenuOpenCorrectly(mq)
-mq.addEventListener('change', ensureMenuOpenCorrectly);
+toggleMobileMenu()

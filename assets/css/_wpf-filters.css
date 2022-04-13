@@ -58,11 +58,11 @@
       & button {
         background-color: transparent;
         color: var(--white) !important;
-        border: 2px solid var(--white, #ffffff) !important;
+        border: 2px solid var(--white, #fff) !important;
         padding: 2ex !important;
         font-size: 1rem !important;
         line-height: revert !important;
-        margin-top: 0px !important;
+        margin-top: 0 !important;
       }
 
       & > .ms-options {
@@ -71,7 +71,8 @@
         & > ul {
           list-style-type: none;
 
-          & li.selected label, & label:hover {
+          & li.selected label,
+          & label:hover {
             background-color: var(--white);
             color: var(--black);
             cursor: pointer;
@@ -84,5 +85,4 @@
   &.is-mobile .wpfFilterWrapper {
     width: 100% !important;
   }
-
 }

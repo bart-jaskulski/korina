@@ -39,6 +39,11 @@
 					"name": "Background",
 					"slug": "bg",
 					"color": "#bac6b7"
+				},
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#1e1e1e"
 				}
 			]
 		},
@@ -107,12 +112,11 @@
 			},
 			"h2": {
 				"color": {
-					"text": "var(--wp--preset--color--white)"
+					"text": "var(--wp--preset--color--black)"
 				},
 				"typography": {
 					"fontWeight": "900",
-					"fontSize": "var(--wp--preset--font-size--lg)",
-					"textTransform": "uppercase"
+					"fontSize": "var(--wp--preset--font-size--lg)"
 				}
 			},
 			"h3": {

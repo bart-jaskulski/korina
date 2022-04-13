@@ -49,24 +49,24 @@ if ( post_password_required() ) {
 			<?php } ?>
 			<?php get_template_part( 'templates/partial/glider-end' ); ?>
 		</figure>
+		<ul class="flex flex-wrap flex-row">
+		<?php foreach ( $images_ids as $image ) { ?>
+			<li class="woocommerce-product-gallery__image">
+				<img class="c-product-single-image"
+					 width="60"
+					 height="60"
+					 src="<?php echo esc_url( wp_get_attachment_image_url( $image, 'thumbnail' ) ); ?>"
+					 alt="<?php echo esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', true ) ); ?>" />
+			</li>
+		<?php } ?>
+		</ul>
 	</div>
 
 	<div class="c-single-product__product | l-flow" data-flow-size="sm">
 
 		<div class="c-badges-container [ flex flex-wrap items-center ] [ gap-2 ]">
 			<span><em>Valberg</em></span>
-			<?php if ( $product->is_on_sale() ) : ?>
-				<span class="c-badge | onsale" data-badge-type="dead">Wyprzedaż</span>
-			<?php endif; ?>
-			<?php if ( $product->get_date_created() > new DateTime( '-30 days' ) ) : ?>
-				<span class="c-badge" data-badge-type="success">Nowość</span>
-			<?php endif; ?>
-			<?php if ( $product->is_featured() ) : ?>
-				<span class="c-badge" data-badge-type="error">Bestseller</span>
-			<?php endif; ?>
-			<?php if ( ! $product->is_in_stock() ) : ?>
-				<span class="c-badge" data-badge-type="faint">Wyprzedane</span>
-			<?php endif; ?>
+			<?php get_template_part( 'templates/partial/badges', args: ['product' => $product])?>
 		</div>
 
 		<h1 class="text-lg font-black product_title entry-title"><?php the_title(); ?></h1>

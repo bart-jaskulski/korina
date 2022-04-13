@@ -5,6 +5,7 @@ const plugins = [
   require('tailwindcss/nesting')(require('postcss-nesting')),
   require('tailwindcss')({
     content: [ './*.php', './templates/**/*.php',  './woocommerce/**/*.php'],
+    safelist: ['!block', 'grid-cols-3', 'grid-cols-4', 'text-[17px]' ,'text-sm', 'text-red', 'font-black'],
     theme: {
       screens: {
         sm: { raw: '(--sm)' },
@@ -14,14 +15,26 @@ const plugins = [
         xxl: { raw: '(--xxl)' },
       },
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        black: 'var(--color-black, #000000)',
-        white: 'var(--color-white, #ffffff)',
-        gray: 'var(--color-gray, #555555)',
-        dark: 'var(--color-dark, #555555)',
-        pale: 'var(--color-pale)',
-        transparent: 'transparent'
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        black: 'var(--black, #000000)',
+        white: 'var(--white, #ffffff)',
+        gray: 'var(--gray, #555555)',
+        dark: 'var(--dark, #555555)',
+        pale: 'var(--pale)',
+        transparent: 'transparent',
+        'neutral-3': 'var(--neutral-3)',
+        'neutral-4': 'var(--neutral-4)',
+        'neutral-5': 'var(--neutral-5)',
+        'neutral-6': 'var(--neutral-6)',
+        'neutral-7': 'var(--neutral-7)',
+        'neutral-9': 'var(--neutral-9)',
+        'gray-8': 'var(--gray-8)',
+        'gray-10': 'var(--neutral-10)',
+        'red-1': 'var(--red-1)',
+        'red-2': 'var(--red-2)',
+        'red-9': 'var(--red-9)',
+        red: 'var(--red)'
       },
       fontFamily: {
         sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],

@@ -8,18 +8,45 @@
 :root {
   /* Design tokens */
   --white: #fff;
-  --black: #000;
-  --gray-0: #fdfdfd;
-  --gray-1: #ededed;
-  --gray-3: #979797;
-  --gray-8: #292929;
-  --green: #9BCEA3;
+  --black: var(--neutral-10);
+  --neutral-1: #fafafa;
+  --neutral-2: #f4f4f4;
+  --neutral-3: #ededed;
+  --neutral-4: #d8d8d8;
+  --gray-5: #c4c4c4;
+  --neutral-5: #979797;
+  --neutral-6: #818181;
+  --gray-8: #727272;
+  --neutral-7: #6a6a6a;
+  --neutral-8: #555555;
+  --neutral-9: #3e3e3e;
+  --neutral-10: #1e1e1e;
+  --gray-2: var(--neutral-3);
+  --gray-3: #e0e0e0;
+  --gray-6: var(--neutral-5);
+  --gray-9: #2f2f2f;
+  --gray-10: var(--neutral-10);
+  --green-1: #FBFDFB;
+  --green-2: #F4F9F5;
+  --green-3: #E3F0E5;
+  --green-4: #CDE5D0;
+  --green-5: #9BCEA3;
+  --green-6: #74C281;
+  --green-7: #57B166;
+  --green-8: #439450;
+  --green-9: #33663A;
+  --green-10: #26442B;
+  --red: #EB001B;
+  --red-1: #FEF6F6;
+  --red-2: #FDE3E3;
+  --red-9: #7F0505;
 
   /* Color aliases */
-  --color-primary: var(--green);
-  --color-text: var(--black);
-  --color-dark: var(--gray-8);
-  --color-background: var(--gray-0);
+  --color-primary: var(--green-5);
+  --color-text: var(--neutral-10);
+  --color-pale: var(--neutral-6);
+  --color-dark: var(--neutral-10);
+  --color-background: var(--neutral-2);
   --color-link: var(--color-primary);
   --font-sans: "Lato";
 

@@ -9,6 +9,6 @@
 	--button-border: 1px solid var(--white);
 }
 
-.c-button:is(:hover) {
-  --button-background: #8e8e8e;
+.c-button:is(:hover, :focus) {
+  --button-background: var(--green-6);
 }

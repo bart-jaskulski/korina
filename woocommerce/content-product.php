@@ -29,13 +29,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	<?php $link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ); ?>
 
 	<div class="c-badges-container [ flex flex-wrap flex-col items-start ] [ p-2 ] gap-2 | z-40">
-		<?php if ( ! $product->is_in_stock() ) : ?>
-			<span class="c-badge">Wyprzedane</span>
-		<?php endif; ?>
-
-		<?php if ( $product->is_on_sale() ) : ?>
-			<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="c-badge | onsale" data-badge-type="error">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
-		<?php endif; ?>
+		<?php get_template_part( 'templates/partial/badges', args: ['product' => $product])?>
 	</div>
 	<div class="c-product-card__thumbnail | trigger:a-add-to-cart | relative | z-0 [ mt-0 mb-6 ]">
 		<a href="<?php echo esc_url( $link ); ?>" class="block | c-product-thumbnail woocommerce-LoopProduct-link woocommerce-loop-product__link">
