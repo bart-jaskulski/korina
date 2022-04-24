@@ -1,4 +1,5 @@
 <?php
+declare( strict_types=1 );
 
 namespace CleanWeb\Extensions;
 
@@ -7,6 +8,9 @@ use FluidCheckout_Steps;
 class FluidCheckout implements \CleanWeb\Component {
 
 	public function initialize(): void {
+		if (! is_plugin_active('fluid-checkout/fluid-checkout.php') ) {
+			return;
+		}
 		add_filter( 'fc_override_template_with_theme_file', [ $this, 'override_template' ], 10, 4 );
 		add_action(
 			'init',
@@ -23,7 +27,7 @@ class FluidCheckout implements \CleanWeb\Component {
 			'fc/checkout/review-order-section.php',
 		];
 
-		if ( in_array( $template_name, $override_templates, true ) ) {
+		if ( \in_array( $template_name, $override_templates, true ) ) {
 			return true;
 		}
 
