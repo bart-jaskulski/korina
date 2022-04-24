@@ -29,3 +29,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<input type="hidden" name="paged" value="1" />
 	<?php wc_query_string_form_fields( null, array( 'orderby', 'submit', 'paged', 'product-page' ) ); ?>
 </form>
+<script>
+const form = document.querySelector('form.woocommerce-ordering')
+if (form) {
+const select = form.querySelector('select')
+select.addEventListener('change', () => {
+form.submit();
+})
+}
+</script>
