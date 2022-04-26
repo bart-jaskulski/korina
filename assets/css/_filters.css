@@ -1,0 +1,36 @@
+.theme-korina {
+  & .wpc-filters-ul-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden !important;
+    @media (--lg) {
+      overflow-y: auto;
+    }
+  }
+
+  & .wpc-filters-widget-main-wrapper .wpc-filters-labels li.wpc-term-item label {
+    border: none;
+
+    &:hover .wpc-filter-label-wrapper {
+      background-color: transparent;
+      font-weight: bold;
+
+      & a {
+        font-weight: bold;
+      }
+    }
+
+    & .wpc-filter-label-wrapper {
+      padding: 0;
+    }
+  }
+
+  & .wpc-filters-widget-main-wrapper input.wpc-label-input:checked+label span.wpc-filter-label-wrapper {
+    background-color: transparent;
+    font-weight: bold;
+
+    & a {
+      font-weight: bold;
+    }
+  }
+}

@@ -43,6 +43,7 @@ if (!window.customElements.get('increment-input')) {
 		#increment = (): void => {
 			this.decrementButton.removeAttribute('disabled')
 			this.inputElement.stepUp()
+			this.inputElement.dispatchEvent(new Event('change'))
 			this.#disableIncrement()
 		}
 
@@ -55,6 +56,7 @@ if (!window.customElements.get('increment-input')) {
 		#decrement = (): void => {
 			this.incrementButton.removeAttribute('disabled')
 			this.inputElement.stepDown()
+			this.inputElement.dispatchEvent(new Event('change'))
 			this.#disableDecrement()
 		}
 

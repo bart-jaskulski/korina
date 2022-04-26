@@ -49,6 +49,9 @@ if ( post_password_required() ) {
 			<?php } ?>
 			<?php get_template_part( 'templates/partial/glider-end' ); ?>
 		</figure>
+		<?php
+		// Show thumbnail below main image if there's more than one.
+		if ( count( $images_ids ) > 1 ) { ?>
 		<ul class="flex flex-wrap flex-row">
 		<?php foreach ( $images_ids as $image ) { ?>
 			<li class="woocommerce-product-gallery__image">
@@ -60,12 +63,15 @@ if ( post_password_required() ) {
 			</li>
 		<?php } ?>
 		</ul>
+		<?php } ?>
 	</div>
 
 	<div class="c-single-product__product | l-flow" data-flow-size="sm">
 
 		<div class="c-badges-container [ flex flex-wrap items-center ] [ gap-2 ]">
-			<span><em>Valberg</em></span>
+			<?php if ($producer = $product->get_attribute('pa_producent')) { ?>
+			<span><em><?php echo esc_html( $producer ); ?></em></span>
+			<?php } ?>
 			<?php get_template_part( 'templates/partial/badges', args: ['product' => $product])?>
 		</div>
 

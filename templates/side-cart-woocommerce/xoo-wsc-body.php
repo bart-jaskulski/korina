@@ -108,5 +108,23 @@ extract( Xoo_Wsc_Template_Args::cart_body() );
 	?>
 
 </div>
+<script>
+	document.querySelectorAll('.xoo-wsc-qty-price').forEach((e) => {
+		e.querySelector('input[type="number"]').addEventListener('change', async (evt) => {
+			const res = await fetch('http://localhost:3000/wp-admin/admin-ajax.php', {
+				method: 'POST',
+				body: new URLSearchParams(
+					{
+						'action': 'cleanweb_update_cart_contents',
+						'quantity': evt.currentTarget.value,
+						'item_key': evt.currentTarget.closest('.xoo-wsc-product').dataset['key']
+					}
+				)
+			})
+			const json = await res.json()
+			console.log(json)
+		})
+	})
+</script>
 
 <?php do_action( 'xoo_wsc_after_products' ); ?>

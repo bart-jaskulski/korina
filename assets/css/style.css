@@ -14,6 +14,7 @@
 @import "component/_pagination.css";
 @import "component/_product-card.css";
 @import "layout/_container.css";
+@import "layout/_spicy-sections.css";
 @import "layout/_flow.css";
 @import "layout/_team-member.css";
 @import "layout/_cart.css";
@@ -28,5 +29,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/utilities";
 @import "_choices.css";
+@import "_filters.css";
 @import "_hacks.css";
 @import "glide.css";

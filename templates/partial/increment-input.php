@@ -7,7 +7,7 @@ $product  = $args['product'];
 $quantity = $args['quantity'];
 ?>
 <increment-input>
-	<p class="font-bold" slot="label"><label for="quantity">Ilość</label></p>
+	<p class="font-bold text-sm lg:text-base" slot="label"><label for="quantity">Ilość</label></p>
 	<style>
 		input::-webkit-outer-spin-button,
 		input::-webkit-inner-spin-button {

@@ -19,6 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <div class="flex flex-wrap gap-8">
+	<?php echo do_shortcode('[fe_open_button]'); ?>
 	<?php if ( is_active_sidebar( 'shop-sidebar' ) ) : ?>
 		<aside class="[ hidden lg:block ] c-products-filters shrink-0">
 			<?php dynamic_sidebar( 'shop-sidebar' ); ?>
@@ -30,8 +31,9 @@ defined( 'ABSPATH' ) || exit;
 			<?php woocommerce_pagination(); ?>
 			<?php do_action( 'cleanweb/archive/filter_chips' ); ?>
 		</div>
-		<div>
-			<p class='woocommerce-info'>Nie znaleziono żadnych produktów</p>
+		<div class="l-flow" data-flow-size="sm">
+			<p class='text-neutral-6 text-md font-bold'>Nie znaleziono żadnych produktów</p>
+			<p class='text-neutral-6'>Spróbuj wyczyścić filtry lub przejdź do innej kategorii</p>
 		</div>
 	</div>
 

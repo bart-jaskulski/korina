@@ -35,40 +35,8 @@ if ( ! empty( $product_tabs ) ) : ?>
 		spicy-sections {
 			/* Big hand-wave over how we'd ultimately express this, but for this custom element, this is how you inform when you'd like to emply which affodances 'collapse', 'tab-bar' and 'exclusive-collapse' are the available affordances.  Anything else is, effectively "plain" or "none". It is only read once.
 			*/
-			--const-mq-affordances: [screen and (max-width: 40em) ] collapse | [screen and
-		(min-width: 60em) ] tab-bar;
+			--const-mq-affordances: [screen] tab-bar;
 			display: block;
-		}
-
-		spicy-sections[affordance="tab-bar"] [role="tabpanel"] {
-			padding-top: 2rem;
-			border-top: 1px solid var(--neutral-3);
-		}
-
-		spicy-sections[affordance="tab-bar"] h2 {
-			padding: 16px 24px;
-			/*margin-inline-end: 2rem;*/
-			cursor: pointer;
-		}
-		spicy-sections[affordance="tab-bar"] h2[tabindex="0"] {
-			border-bottom: 3px solid var(--color-primary);
-			color: var(--color-primary);
-		}
-
-		spicy-sections[affordance="tab-bar"] h2:not([tabindex="0"]) {
-			font-weight: 500;
-		}
-		spicy-sections > [affordance*="collapse"]::before {
-			font-family: 'fontello';
-			content: "\e806";
-			background-image: unset;
-			transform: rotate(0deg);
-			transform-origin: 45% 80%;
-			transition: transform 200ms ease-in-out;
-		}
-		spicy-sections > [affordance*="collapse"][aria-expanded="true"]::before,
-		spicy-sections > [affordance*="collapse"][aria-expanded="true"]::after {
-			transform: rotate(90deg);
 		}
 	</style>
 

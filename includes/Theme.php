@@ -20,6 +20,7 @@ final class Theme {
 			new Extensions\Cleanup(),
 			new Extensions\CommentsRemoval(),
 			new Extensions\PostTypes(),
+			new Ajax\UpdateCartContents(),
 		];
 
 		if ( class_exists( 'woocommerce' ) ) {

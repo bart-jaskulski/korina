@@ -1,0 +1,35 @@
+spicy-sections[affordance="tab-bar"] [role="tabpanel"] {
+  padding-top: 2rem;
+  border-top: 1px solid var(--neutral-3);
+}
+
+spicy-sections[affordance="tab-bar"] h2 {
+  /*margin-inline-end: 2rem;*/
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 14px;
+  @media (--lg) {
+    padding: 16px 24px;
+    font-size: 16px;
+  }
+}
+spicy-sections[affordance="tab-bar"] h2[tabindex="0"] {
+  border-bottom: 3px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+spicy-sections[affordance="tab-bar"] h2:not([tabindex="0"]) {
+  font-weight: 500;
+}
+spicy-sections > [affordance*="collapse"]::before {
+  font-family: 'fontello';
+  content: "\e806";
+  background-image: unset;
+  transform: rotate(0deg);
+  transform-origin: 45% 80%;
+  transition: transform 200ms ease-in-out;
+}
+spicy-sections > [affordance*="collapse"][aria-expanded="true"]::before,
+spicy-sections > [affordance*="collapse"][aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
