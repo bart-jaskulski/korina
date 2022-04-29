@@ -1,0 +1,33 @@
+# Path-based git attributes
+# https://www.kernel.org/pub/software/scm/git/docs/gitattributes.html
+
+# Ignore all test and documentation with "export-ignore".
+/.editorconfig               export-ignore
+/.gitattributes              export-ignore
+/.gitignore                  export-ignore
+/.constants.inc              export-ignore
+/.gitlab-ci.yml              export-ignore
+/.shopmagic-aliases.inc      export-ignore
+/.codeception.dist.yml       export-ignore
+/.env.testing                export-ignore
+/.eslintrc.json              export-ignore
+/.git                        export-ignore
+/.phpcs-cache                export-ignore
+/apigen.neon                 export-ignore
+/jest.config.js              export-ignore
+/package.json                export-ignore
+/package-lock.json           export-ignore
+/codeception.dist.yml        export-ignore
+/scoper.inc.php              export-ignore
+/tsconfig.json               export-ignore
+/phpcs.xml.dist              export-ignore
+/phpstan.neon.dist           export-ignore
+/phpunit.xml.dist            export-ignore
+/phpunit-unit.xml            export-ignore
+/phpunit-integration.xml     export-ignore
+/.idea                       export-ignore
+/.gitlab                     export-ignore
+/tests                       export-ignore
+/docs                        export-ignore
+/tools			             export-ignore
+/node_modules	             export-ignore

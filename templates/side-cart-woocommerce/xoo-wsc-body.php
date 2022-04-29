@@ -111,18 +111,20 @@ extract( Xoo_Wsc_Template_Args::cart_body() );
 <script>
 	document.querySelectorAll('.xoo-wsc-qty-price').forEach((e) => {
 		e.querySelector('input[type="number"]').addEventListener('change', async (evt) => {
+			const product = evt.currentTarget.closest('.xoo-wsc-product');
 			const res = await fetch('http://localhost:3000/wp-admin/admin-ajax.php', {
 				method: 'POST',
 				body: new URLSearchParams(
 					{
 						'action': 'cleanweb_update_cart_contents',
 						'quantity': evt.currentTarget.value,
-						'item_key': evt.currentTarget.closest('.xoo-wsc-product').dataset['key']
+						'item_key': product.dataset['key']
 					}
 				)
 			})
-			const json = await res.json()
-			console.log(json)
+			const { success, data } = await res.json()
+			product.querySelector('.xoo-wsc-price strong').innerHTML = data.line_total
+			document.querySelector('#cart-totals .subtotal').innerHTML = data.subtotal
 		})
 	})
 </script>

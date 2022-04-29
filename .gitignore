@@ -4,3 +4,4 @@ node_modules
 .phpcs-cache
 manifest.json
 dist
+korina.zip

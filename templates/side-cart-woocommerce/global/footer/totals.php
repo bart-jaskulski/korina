@@ -27,11 +27,11 @@ if ( WC()->cart->is_empty() ) {
 	return;}
 ?>
 
-<table>
+<table id="cart-totals">
 	<?php foreach ( $totals as $key => $data ) : ?>
 	<tr class="font-bold">
 		<th class="py-4"><?php echo esc_html( $data['label'] ); ?></th>
-		<td class="py-4 text-right"><?php echo ( $data['value'] ); ?></td>
+		<td class="py-4 text-right subtotal"><?php echo ( $data['value'] ); ?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>

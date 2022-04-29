@@ -35,7 +35,7 @@
 			"if [[ -f ${PWD##*/}.zip ]]; then rm ${PWD##*/}.zip; fi;",
 			"if [[ -d ./dist ]]; then rm -rf ./dist; fi;",
 			"npm run build",
-			"zip -rq ${PWD##*/}.zip ./ -x ${PWD##*/}.zip node_modules\/\\* [.]* .git\/\\* assets\/\\* tests\/\\* vite.config.ts composer.* wptwig.config.json tailwind.config.js tsconfig.json docker-compose.yml postcss.config.js phpunit.xml phpcs.xml.dist docker-compse.yml package*",
+			"@composer archive --file=\"${PWD##*/}\" --format=zip",
 			"@composer install"
 		],
 		"b": "@bundle"
