@@ -78,7 +78,11 @@ if ( post_password_required() ) {
 		<h1 class="text-lg font-black product_title entry-title"><?php the_title(); ?></h1>
 
 		<div class="[ flex flex-wrap ] [ gap-x-4 ] [ text-xs text-pale font-bold ]" style="color: var(--neutral-8)">
-			<p><i class="icon-dot text-neutral-4"></i> Na zamówienie</p>
+			<?php if ($product->is_in_stock()) { ?>
+				<p><i class='icon-dot text-primary'></i> Dostępny</p>
+			<?php } else { ?>
+				<p><i class='icon-dot text-neutral-4'></i> Na zamówienie</p>
+			<?php } ?>
 			<p><i class="icon-bus mr-2"></i> 1-30 dni roboczych</p>
 		</div>
 
@@ -104,7 +108,7 @@ if ( post_password_required() ) {
 			?>
 			<div class="l-flow text-right" data-flow-size="xs">
 				<p class="font-bold text-[14px]">Cena (brutto)</p>
-				<p class="font-bold text-lg price">
+				<p class="font-bold text-lg price text-red">
 					<?php echo $product->get_price_html(); ?>
 				</p>
 			</div>

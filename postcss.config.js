@@ -15,7 +15,7 @@ const plugins = [
         xxl: { raw: '(--xxl)' },
       },
       colors: {
-        primary: 'var(--primary)',
+        primary: 'var(--color-primary)',
         secondary: 'var(--secondary)',
         black: 'var(--black, #000000)',
         white: 'var(--white, #ffffff)',
