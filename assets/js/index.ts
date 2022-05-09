@@ -1,7 +1,7 @@
 import elementReady from 'element-ready';
-import ensureMenuOpenCorrectly from './menu';
 import Choices from "choices.js";
 import Glide, {Options} from "@glidejs/glide";
+import product from "./product";
 
 async function initialize() {
 	if (await elementReady('select[name="orderby"]')) {
@@ -57,12 +57,20 @@ async function initializeGliderForProductPage() {
 	if (await elementReady('.c-product-images')) {
 		const productImages = document.querySelector('.c-product-images')
 		if (productImages && productImages.getElementsByTagName('img').length > 1) {
-			mountGlider('.c-product-images', {perView: 1})
+			return mountGlider('.c-product-images', {perView: 1})
 		}
 	}
 }
 
-initializeGliderForProductPage()
+const productGlide = initializeGliderForProductPage()
+document.querySelectorAll('.js-glide-navigation').forEach( el => {
+		el.addEventListener('click', (evt) => {
+			evt.preventDefault()
+			productGlide.then(glider => glider.go(`=${el.dataset.slide}`))
+		})
+	}
+)
+
 
 /**
  * Show register for on button click

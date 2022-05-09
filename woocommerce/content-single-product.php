@@ -52,14 +52,16 @@ if ( post_password_required() ) {
 		<?php
 		// Show thumbnail below main image if there's more than one.
 		if ( count( $images_ids ) > 1 ) { ?>
-		<ul class="flex flex-wrap flex-row">
-		<?php foreach ( $images_ids as $image ) { ?>
-			<li class="woocommerce-product-gallery__image">
-				<img class="c-product-single-image"
+		<ul class="flex flex-wrap flex-row gap-2 lg:mt-4">
+		<?php foreach ( array_values( $images_ids ) as $i => $image ) { ?>
+			<li class="woocommerce-product-gallery__image opacity-50 hover:opacity-100 transition-opacity">
+				<a href="#" class="js-glide-navigation" data-slide="<?php echo esc_attr( $i ); ?>">
+				<img class="c-product-single-image rounded-[4px]"
 					 width="60"
 					 height="60"
 					 src="<?php echo esc_url( wp_get_attachment_image_url( $image, 'thumbnail' ) ); ?>"
 					 alt="<?php echo esc_attr( get_post_meta( $image, '_wp_attachment_image_alt', true ) ); ?>" />
+				</a>
 			</li>
 		<?php } ?>
 		</ul>
@@ -86,6 +88,7 @@ if ( post_password_required() ) {
 			<p><i class="icon-bus mr-2"></i> 1-30 dni roboczych</p>
 		</div>
 
+		<!-- @todo: maybe add dynamic table of properties later
 		<dl class="c-product-details [ flex flex-wrap ] [ my-8 ]">
 			<dt>Wymiary zewnętrzne</dt>
 			<dd>220 x 350 x 300 mm</dd>
@@ -94,6 +97,7 @@ if ( post_password_required() ) {
 			<dt>Liczba półek</dt>
 			<dd>1</dd>
 		</dl>
+		-->
 
 		<?php if ( $product->get_type() !== 'variable' ) { ?>
 		<div class="flex flex-wrap justify-between items-center">
@@ -121,10 +125,12 @@ if ( post_password_required() ) {
 		<?php do_action( 'woocommerce_share' ); ?>
 
 		<hr class="border-solid border-neutral-3 border-0 border-t my-4">
-		<div class="l-flow | text-xs" data-flow-size="xs">
-			<p class="flex flex-wrap justify-between"><b>Masz pytania?</b><span class="text-neutral-7">(+48) 577 872 666</span></p>
-			<p class="flex flex-wrap justify-between"><b>Skontaktuj się z nami!</b><span class="text-neutral-7">sprzedaz@korina.com.pl</span></p>
-		</div>
+		<dl class="grid grid-cols-2 gap-y-2 | text-xs">
+			<dt><b>Masz pytania?</b></dt>
+			<dd><a href="tel:+48577872666" class="text-neutral-7">(+48) 577 872 666</a></dd>
+			<dt><b>Skontaktuj się z nami!</b></dt>
+			<dd><a href="mailto:sprzedaz@korina.com.pl" class="text-neutral-7">sprzedaz@korina.com.pl</a></dd>
+		</dl>
 
 		<?php
 		if ( post_type_supports( 'product', 'comments' ) ) {
