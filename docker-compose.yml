@@ -21,7 +21,7 @@ services:
       - ./:/var/www/html/wp-content/themes/korina
 
   db:
-    image: mariadb:10.3
+    image: mysql:5
     restart: always
     init: true
     environment:
