@@ -18,3 +18,7 @@
   }
 
 }
+
+.woocommerce-product-attributes-item__label {
+  min-width: 200px;
+}

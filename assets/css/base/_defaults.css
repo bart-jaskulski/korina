@@ -75,6 +75,7 @@ dialog + .backdrop {
 :where(ul, ol):not([class]) {
   list-style: revert;
   padding-inline-start: 24px;
+  padding-left: 24px;
 }
 
 /*
