@@ -8,7 +8,9 @@ use FluidCheckout_Steps;
 class FluidCheckout implements \CleanWeb\Component {
 
 	public function initialize(): void {
-		if (! is_plugin_active('fluid-checkout/fluid-checkout.php') ) {
+		if (! \in_array('fluid-checkout/fluid-checkout.php',
+						apply_filters('active_plugin',
+						get_option('active_plugins')))) {
 			return;
 		}
 		add_filter( 'fc_override_template_with_theme_file', [ $this, 'override_template' ], 10, 4 );
