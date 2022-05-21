@@ -38,8 +38,8 @@ if ( post_password_required() ) {
 		<?php
 		$images_ids = array_merge( [ $product->get_image_id() ], $product->get_gallery_image_ids() );
 		?>
-		<figure class="c-product-images lg:w-[500px] woocommerce-product-gallery__wrapper" <?php echo count( $images_ids ) <= 1 ? 'data-hide-arrows="true"' : ''; ?>>
-			<?php get_template_part( 'templates/partial/glider-start' ); ?>
+		<figure id="c-product-images" data-options='<?php echo json_encode(['perView' => 1]); ?>' class="c-product-images lg:w-[500px] woocommerce-product-gallery__wrapper" <?php echo count( $images_ids ) <= 1 ? 'data-hide-arrows="true"' : ''; ?>>
+			<?php get_template_part( 'templates/partial/glider-start', args: ['id' => 'product-images', 'options' => ['perView' => 1]] ); ?>
 			<?php foreach ( $images_ids as $image ) { ?>
 				<li class="glide__slide woocommerce-product-gallery__image">
 					<a class="c-product-single-image" href="<?php echo esc_url( $product->get_permalink() ); ?>">

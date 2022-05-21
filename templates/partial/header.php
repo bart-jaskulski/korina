@@ -1,5 +1,5 @@
 <?php
-$logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0];
+$logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0] ?? null;
 ?>
 
 <header class="[ lg:sticky w-full lg:-top-[48px] ] [ bg-white ] [ z-50 ]">
@@ -14,11 +14,10 @@ $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0]
 				</span>
 			</address>
 			<nav>
-				<ul class="flex flex-wrap">
-					<li><a class="p-4">O nas</a></li>
-					<li><a class="p-4">Meble na wymiar</a></li>
-					<li><a class="p-4">Kontakt</a></li>
-				</ul>
+				<?php \CleanWeb\Utils\NavMenu::display_menu(
+					'top-menu',
+					['container' => '', 'menu_class' => 'flex flex-wrap']
+				); ?>
 			</nav>
 		</div>
 	</div>
@@ -27,11 +26,13 @@ $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0]
 			<i class="icon-grid"></i>
 		</button>
 		<a class="mr-auto ml-3 lg:ml-0" href="<?php echo esc_url( home_url() ); ?>" rel="home">
-			<img class="c-site-logo w-full"
-				 src="<?php echo esc_attr( $logo ); ?>"
-				 alt=""
-				 width="159"
-				 height="48"/>
+			<?php if ($logo) { ?>
+				<img class="c-site-logo w-full"
+					 src="<?php echo esc_attr( $logo ); ?>"
+					 alt=""
+					 width="159"
+					 height="48"/>
+			<?php } ?>
 		</a>
 		<div class="flex flex-wrap items-center gap-4">
 			<?php wc_get_template( 'product-searchform.php' ); ?>
@@ -47,6 +48,6 @@ $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0]
 		</div>
 	</div>
 	<nav class="nav-main l-container" role="navigation">
-		<?php wp_nav_menu( [ 'theme_location' => 'header-menu' ] ); ?>
+		<?php \CleanWeb\Utils\NavMenu::display_menu('header-menu'); ?>
 	</nav>
 </header>

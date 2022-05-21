@@ -3,7 +3,7 @@
 namespace CleanWeb\Theme;
 
 use CleanWeb\Component;
-use CleanWeb\Extensions\Manifest;
+use CleanWeb\Manifest;
 use CleanWeb\Theme;
 use LogicException;
 

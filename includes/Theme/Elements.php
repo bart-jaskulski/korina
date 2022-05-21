@@ -20,6 +20,7 @@ final class Elements implements Component {
 			[
 				'header-menu' => 'Menu główne',
 				'footer-menu' => 'Menu w stopce',
+				'top-menu' => 'Menu górne',
 			]
 		);
 	}

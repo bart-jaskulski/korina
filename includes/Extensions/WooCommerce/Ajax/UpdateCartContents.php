@@ -1,19 +1,15 @@
 <?php
 declare( strict_types=1 );
 
-namespace CleanWeb\Ajax;
+namespace CleanWeb\Extensions\WooCommerce\Ajax;
 
 final class UpdateCartContents implements \CleanWeb\Component {
 
 	private const ACTION = 'cleanweb_update_cart_contents';
 
 	public function initialize(): void {
-		add_action( 'wp_ajax_nopriv_' . self::ACTION, function() {
-			$this->update_cart_contents();
-		});
-		add_action( 'wp_ajax_' . self::ACTION, function() {
-			$this->update_cart_contents();
-		});
+		add_action( 'wp_ajax_nopriv_' . self::ACTION, fn() => $this->update_cart_contents());
+		add_action( 'wp_ajax_' . self::ACTION, fn() => $this->update_cart_contents());
 	}
 
 	private function update_cart_contents(): void {

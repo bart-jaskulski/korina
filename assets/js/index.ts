@@ -1,7 +1,6 @@
 import elementReady from 'element-ready';
 import Choices from "choices.js";
-import Glide, {Options} from "@glidejs/glide";
-import product from "./product";
+import {mountGlider} from "./glider";
 
 async function initialize() {
 	if (await elementReady('select[name="orderby"]')) {
@@ -13,64 +12,28 @@ async function initialize() {
 	}
 }
 
-
-async function mountGlider(selector: string, options: Options = {}): Promise<Glide.Properties|undefined> {
-	if (await elementReady(selector)) {
-		console.log('Mounting glider: ', selector);
-		const mq = window.matchMedia('(min-width: 64rem)');
-
-		if (mq.matches) {
-			options.perView = options.perView || 4;
-		}
-
-		const config = Object.assign({
-			perView: 2,
-			type: 'slider',
-			startAt: 0,
-			gap: 16,
-			bound: true
-		}, options);
-
-		let glide = new Glide(
-			selector,
-			config
-		).mount();
-
-		mq.addEventListener('change', (e) => {
-			console.log('Match. Changing items per view to ' + (e.matches ? 4 : 2));
-			glide.update({perView: e.matches ? 4 : 2})
-		})
-
-		return glide
+document.querySelectorAll<HTMLElement>('.glide:not(#product-images)').forEach(c => {
+	let glideConfig = {}
+	if (c.dataset['options']) {
+		glideConfig = JSON.parse(c.dataset['options'])
 	}
-	return;
+	mountGlider(c, glideConfig)
+})
+
+let el1 = document.querySelector('#c-product-images');
+if (el1) {
+	const glider = mountGlider(el1, JSON.parse(el1.dataset['options']))
+	document.querySelectorAll('.js-glide-navigation')
+		.forEach( el => {
+				el.addEventListener('click', (evt) => {
+					evt.preventDefault()
+					glider.go(`=${el.dataset.slide}`)
+				})
+			}
+		)
 }
 
 initialize()
-mountGlider('.c-new-products')
-mountGlider('.c-featured-products')
-
-/**
- * Initialize glider if there are more than 1 product images
- */
-async function initializeGliderForProductPage() {
-	if (await elementReady('.c-product-images')) {
-		const productImages = document.querySelector('.c-product-images')
-		if (productImages && productImages.getElementsByTagName('img').length > 1) {
-			return mountGlider('.c-product-images', {perView: 1})
-		}
-	}
-}
-
-const productGlide = initializeGliderForProductPage()
-document.querySelectorAll('.js-glide-navigation').forEach( el => {
-		el.addEventListener('click', (evt) => {
-			evt.preventDefault()
-			productGlide.then(glider => glider.go(`=${el.dataset.slide}`))
-		})
-	}
-)
-
 
 /**
  * Show register for on button click

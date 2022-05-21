@@ -112,6 +112,9 @@ class Walker extends WPWalker {
 	public function start_el( &$output, $data_object, $depth = 0, $args = null, $current_object_id = 0 ) {
 		// Restores the more descriptive, specific name for use within this method.
 		$menu_item = $data_object;
+		if (is_array($args)) {
+			$args = (object) $args;
+		}
 
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
 			$t = '';
@@ -223,19 +226,17 @@ class Walker extends WPWalker {
 		 */
 		$title = apply_filters( 'nav_menu_item_title', $title, $menu_item, $args, $depth );
 
+		$item_output  = $args->before;
 		if ( $depth > 0 ) {
-			$item_output  = $args->before;
 			$item_output .= '<a' . $attributes . '>';
 			$item_output .= $args->link_before . $title . $args->link_after;
 			$item_output .= '</a>';
-			$item_output .= $args->after;
 		} else {
-			$item_output  = $args->before;
 			$item_output .= '<span' . $attributes . '>';
 			$item_output .= $args->link_before . $title . $args->link_after;
 			$item_output .= '</span>';
-			$item_output .= $args->after;
 		}
+		$item_output .= $args->after;
 
 		/**
 		 * Filters a menu item's starting output.
