@@ -44,13 +44,6 @@ input[type="radio"] {
 
 a {
   color: currentColor;
-
-  &:not([href]) {
-    cursor: not-allowed;
-  }
-
-  &:hover {
-  }
 }
 
 img {
