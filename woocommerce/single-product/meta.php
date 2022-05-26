@@ -23,6 +23,8 @@ global $product;
 ?>
 <dl class="c-product-meta [ text-xs ] [ flex flex-wrap ] [ gap-1 ] product_meta" style="color: var(--neutral-7)">
 
+	<dt></dt>
+	<dd><?php do_action('woocommerce_product_meta_start'); ?></dd>
 	<?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
 		<dt class="sku_wrapper"><?php esc_html_e( 'SKU:', 'woocommerce' ); ?></dt>
 		<dd class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></dd>
