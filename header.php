@@ -8,7 +8,7 @@
 	<script>document.documentElement.classList.remove('no-js')</script>
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class( 'relative [ flex flex-col justify-between ] min-h-screen | gap-4' ); ?>>
+<body <?php body_class( 'relative [ flex flex-col justify-between ] min-h-screen | overflow-hidden' ); ?>>
 <a class="sr-only" href="#content">Przejdź do treści</a>
 <?php wp_body_open(); ?>
 <?php get_template_part( 'templates/partial/header' ); ?>
