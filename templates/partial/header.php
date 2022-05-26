@@ -39,6 +39,7 @@ $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0]
 			<a class="p-2" href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" aria-label="Moje konto"><i class="icon-account"></i></a>
 			<a class="relative | p-2 xoo-wsc-cart-trigger" href="#" aria-label="Mój koszyk">
 				<?php if ( WC()->cart->get_cart_contents_count() > 0 ) : ?>
+				<!-- TODO: Update cart count with AJAX -->
 					<span class="[ bg-primary text-white ] [ absolute -top-[6px] -right-[6px] ] [ text-[8px] font-bold text-center leading-[2] ] [ w-[16px] h-[16px] ] [ rounded-full ]">
 					<?php echo esc_html( min( WC()->cart->get_cart_contents_count(), 99 ) ); ?>
 			</span>
