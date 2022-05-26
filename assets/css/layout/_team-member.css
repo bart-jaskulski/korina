@@ -3,23 +3,26 @@
   & .c-team-details {
     position: absolute;
     bottom: 0;
+
     @media (--lg) {
       top: 15%;
     }
   }
+
   & .c-team-image {
     aspect-ratio: 1;
     height: unset;
     object-fit: cover;
   }
+
   & .c-image-border {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     background-image:
-        linear-gradient(90deg, black, transparent, black),
-        linear-gradient(transparent 80%, black);
+      linear-gradient(90deg, black, transparent, black),
+      linear-gradient(transparent 80%, black);
 
     @media (--lg) {
       background-image: linear-gradient(90deg, black, transparent, black);
@@ -39,6 +42,7 @@
       }
     }
   }
+
   & .i-image-border {
     position: absolute;
     top: 0;
@@ -82,6 +86,7 @@
       }
     }
   }
+
   & .reveal {
     position: absolute;
     z-index: -1;
@@ -106,11 +111,13 @@
     & .c-team-details {
       left: 1rem;
       bottom: 0;
+
       @media (--lg) {
         bottom: unset;
         left: 80%;
       }
     }
+
     & .i-image-border {
       & .center,
       & .left,
@@ -122,6 +129,7 @@
         transform: translateX(125px) scaleX(160);
       }
     }
+
     & .reveal {
       left: 0;
 
@@ -144,6 +152,7 @@
         right: 80%;
       }
     }
+
     & .i-image-border {
       & .center,
       & .left,
@@ -155,6 +164,7 @@
         transform: translateX(285px) scaleX(160);
       }
     }
+
     & .reveal::before {
       left: 0;
       transform-origin: left;
@@ -165,9 +175,9 @@
   /* Interactive state */
   &:is(:hover, :focus) {
     & .i-image-border {
-      & .center {transform: scaleX(1060);}
-      & .left {transform: translateX(0);}
-      & .right {transform: translateX(1064px);}
+      & .center { transform: scaleX(1060); }
+      & .left { transform: translateX(0); }
+      & .right { transform: translateX(1064px); }
     }
 
     & .reveal::before {
@@ -176,9 +186,9 @@
 
     &[data-block-alignment="right"] {
       & .i-image-border {
-        & .center {transform: translateX(396px) scaleX(1056);}
-        & .left {transform: translateX(-660px);}
-        & .right {transform: translateX(400px);}
+        & .center { transform: translateX(396px) scaleX(1056); }
+        & .left { transform: translateX(-660px); }
+        & .right { transform: translateX(400px); }
       }
     }
   }

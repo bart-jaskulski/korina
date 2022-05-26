@@ -15,7 +15,6 @@
       opacity: 1;
     }
   }
-
 }
 
 [data-hide-arrows="true"] .glide .glide__arrows {
@@ -106,6 +105,7 @@
 
 .glide__arrow--left {
   left: -16px;
+
   @media (--lg) {
     left: -26px;
   }
@@ -113,6 +113,7 @@
 
 .glide__arrow--right {
   right: -16px;
+
   @media (--lg) {
     right: -26px;
   }

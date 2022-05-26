@@ -34,7 +34,7 @@ body:is(.theme-theme, .theme-korina) {
 
   &.woocommerce-checkout .fc-content.fc-container {
     max-width: auto;
-    padding: 0
+    padding: 0;
   }
 
   & form.woocommerce-checkout .fc-wrapper {
@@ -75,8 +75,6 @@ body:is(.theme-theme, .theme-korina) {
           float: none;
         }
       }
-
     }
   }
-
 }

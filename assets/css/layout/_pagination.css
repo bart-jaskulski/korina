@@ -11,7 +11,7 @@ ul.page-numbers {
     &[aria-current="page"] {
       color: var(--color-primary);
       font-weight: bold;
-      border-bottom: 2px solid currentColor;
+      border-bottom: 2px solid currentcolor;
     }
   }
 }

@@ -1,11 +1,11 @@
-.l-flow  {
-	--flow-spacing: var(--space-md);
-	&[data-flow-size="xs"] {--flow-spacing: var(--space-xs)}
-	&[data-flow-size="sm"] {--flow-spacing: var(--space-sm)}
-	&[data-flow-size="md"] {--flow-spacing: var(--space-md)}
-	&[data-flow-size="lg"] {--flow-spacing: var(--space-lg)}
+.l-flow {
+  --flow-spacing: var(--space-md);
+  &[data-flow-size="xs"] { --flow-spacing: var(--space-xs); }
+  &[data-flow-size="sm"] { --flow-spacing: var(--space-sm); }
+  &[data-flow-size="md"] { --flow-spacing: var(--space-md); }
+  &[data-flow-size="lg"] { --flow-spacing: var(--space-lg); }
 
-	& > * + * {
-		margin-block-start: var(--flow-spacing);
-	}
+  & > * + * {
+    margin-block-start: var(--flow-spacing);
+  }
 }

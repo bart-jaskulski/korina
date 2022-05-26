@@ -7,7 +7,7 @@ html {
   font-family: var(--font-sans);
   background-color: var(--site-background, transparent);
   color: var(--site-text, black);
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizespeed;
   overflow-x: hidden;
 }
 
@@ -43,7 +43,7 @@ input[type="radio"] {
 }
 
 a {
-  color: currentColor;
+  color: currentcolor;
 }
 
 img {
@@ -94,4 +94,3 @@ dialog + .backdrop {
 table {
   width: 100%;
 }
-

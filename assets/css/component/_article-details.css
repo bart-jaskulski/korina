@@ -1,5 +1,5 @@
 .c-article-details > *:not(:last-child)::after {
-	content: "\2022";
-	color: var(--white);
-	margin-inline: 8px;
+  content: "\2022";
+  color: var(--white);
+  margin-inline: 8px;
 }

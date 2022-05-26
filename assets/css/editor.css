@@ -5,5 +5,5 @@ html {
   font-family: var(--font-sans);
   background-color: var(--site-background, transparent);
   color: var(--site-text, black);
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizespeed;
 }

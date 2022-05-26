@@ -285,12 +285,12 @@ table.c-woocommerce-order-completed {
 
   & .wpc-filters-open-widget {
     width: 100%;
+
     & .wpc-button-inner {
       justify-content: center;
     }
   }
 }
-
 
 #menu-menu-gorne .menu-item a {
   padding: 16px;
