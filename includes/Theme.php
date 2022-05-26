@@ -31,7 +31,7 @@ final class Theme {
 			new Theme\Elements(),
 			new Theme\Assets( $this->manifest ),
 			new Extensions\Cleanup(),
-			new Extensions\CommentsRemoval(),
+//			new Extensions\CommentsRemoval(),
 			new Extensions\ThemeExtensions\FeaturesSlider(),
 			new Extensions\ThemeExtensions\Reviews(),
 		];
