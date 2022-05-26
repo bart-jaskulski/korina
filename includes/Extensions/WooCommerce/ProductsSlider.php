@@ -6,6 +6,7 @@ class ProductsSlider implements \CleanWeb\Component {
 
 	public function initialize(): void {
 		add_action('init', fn() => $this->registerPostType());
+		add_action('save_post_korina-slide', fn($id) => $this->savePost($id));
 		add_shortcode('korina_produkty', fn($args) => $this->displayShortcode($args));
 	}
 
@@ -16,10 +17,7 @@ class ProductsSlider implements \CleanWeb\Component {
 				'label' => 'Slider produktów',
 				'public' => false,
 				'show_ui' => true,
-				'supports' => [
-					'title',
-					'custom-fields'
-				],
+				'supports' => [ 'title' ],
 				'register_meta_box_cb' => fn() => $this->registerMetaBox(),
 			]
 		);
@@ -34,7 +32,36 @@ class ProductsSlider implements \CleanWeb\Component {
 	}
 
 	private function displayMetaBox(): void {
-		echo '';
+		woocommerce_wp_checkbox(
+			[
+				'label' => 'Wyróżnione?',
+				'id' => 'featured',
+				'name' => 'featured'
+			]
+		);
+
+		woocommerce_wp_text_input([
+			'type' => 'number',
+			'label' => 'Limit',
+			'id' => 'limit',
+			'name' => 'limit',
+			'placeholder' => 8,
+			'custom_attributes' => [
+				'min' => 8
+			]
+		]);
+
+		woocommerce_wp_select([
+			'id' => 'product-categories',
+			'label' => 'Kategoria produktu',
+			'name' => 'category',
+			'options' => $this->getProductCategories(),
+		]);
+	}
+
+	private function savePost(int $postId) {
+		update_post_meta($postId, 'limit', $_POST['limit'] ?? 8);
+		update_post_meta($postId, 'featured', $_POST['featured'] ?? false);
 	}
 
 	private function displayShortcode( $args ): string {
@@ -44,11 +71,15 @@ class ProductsSlider implements \CleanWeb\Component {
 
 		$id = absint($args['id']);
 
-		$products = wc_get_products([
-			'limit' => 8,
+		$productsArgs    = [
+			'limit'   => get_post_meta( $id, 'limit', true ) ?: 8,
 			'orderby' => 'date',
-			'order' => 'DESC'
-		]);
+			'order'   => 'DESC'
+		];
+		if ( get_post_meta( $id, 'featured', true ) ) {
+			$productsArgs['include'] = wc_get_featured_product_ids();
+		}
+		$products = wc_get_products( $productsArgs );
 
 		ob_start();
 
@@ -61,6 +92,20 @@ class ProductsSlider implements \CleanWeb\Component {
 		);
 
 		return ob_get_clean();
+	}
+
+	private function getProductCategories(): array {
+		/** @var \WP_Term[] $categories */
+		$categories = get_categories( [
+			'taxonomy' => 'product_cat'
+		] );
+
+		$result = [];
+		foreach ( $categories as $category ) {
+			$result[$category->term_id] = $category->name;
+		}
+
+		return $result;
 	}
 
 }
