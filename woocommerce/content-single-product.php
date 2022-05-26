@@ -80,7 +80,7 @@ if ( post_password_required() ) {
 		<h1 class="text-lg font-black product_title entry-title"><?php the_title(); ?></h1>
 
 		<div class="[ flex flex-wrap ] [ gap-x-4 ] [ text-xs text-pale font-bold ]" style="color: var(--neutral-8)">
-			<?php if ($product->is_in_stock()) { ?>
+			<?php if (!$product->is_on_backorder() && $product->is_in_stock()) { ?>
 				<p><i class='icon-dot text-primary'></i> Dostępny</p>
 			<?php } else { ?>
 				<p><i class='icon-dot text-neutral-4'></i> Na zamówienie</p>

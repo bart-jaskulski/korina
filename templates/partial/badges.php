@@ -13,6 +13,6 @@ $product = $args['product'];
 <?php if ( $product->is_featured() ) : ?>
 	<span class="c-badge" data-badge-type="error">Bestseller</span>
 <?php endif; ?>
-<?php if ( ! $product->is_in_stock() ) : ?>
+<?php if ( ! $product->is_in_stock() || $product->is_on_backorder() ) : ?>
 	<span class="c-badge" data-badge-type="faint">Na zamówienie</span>
 <?php endif; ?>
