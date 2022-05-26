@@ -27,7 +27,7 @@ if (el1) {
 		.forEach( el => {
 				el.addEventListener('click', (evt) => {
 					evt.preventDefault()
-					glider.go(`=${el.dataset.slide}`)
+					glider?.go(`=${el.dataset.slide}`)
 				})
 			}
 		)
