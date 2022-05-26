@@ -48,7 +48,8 @@ if (!window.customElements.get('increment-input')) {
 		}
 
 		#disableIncrement = (): void => {
-			if ( !isNaN(Number.parseInt(this.inputElement.max)) && this.inputElement.max <= this.inputElement.value) {
+			if ( !isNaN(Number.parseInt(this.inputElement.max)) &&
+				Number.parseInt(this.inputElement.value) >= Number.parseInt(this.inputElement.max)) {
 				this.incrementButton.setAttribute('disabled', 'disabled');
 			}
 		}
@@ -61,7 +62,8 @@ if (!window.customElements.get('increment-input')) {
 		}
 
 		#disableDecrement = (): void => {
-			if ( !isNaN(Number.parseInt(this.inputElement.min)) && this.inputElement.min >= this.inputElement.value) {
+			if ( !isNaN(Number.parseInt(this.inputElement.min)) &&
+				Number.parseInt(this.inputElement.min) >= Number.parseInt(this.inputElement.value)) {
 				this.decrementButton.setAttribute('disabled', 'disabled');
 			}
 		}
