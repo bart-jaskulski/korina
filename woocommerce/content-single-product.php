@@ -88,16 +88,7 @@ if ( post_password_required() ) {
 			<p><i class="icon-bus mr-2"></i> 1-30 dni roboczych</p>
 		</div>
 
-		<!-- @todo: maybe add dynamic table of properties later
-		<dl class="c-product-details [ flex flex-wrap ] [ my-8 ]">
-			<dt>Wymiary zewnętrzne</dt>
-			<dd>220 x 350 x 300 mm</dd>
-			<dt>Typ zamku</dt>
-			<dd>kluczowy</dd>
-			<dt>Liczba półek</dt>
-			<dd>1</dd>
-		</dl>
-		-->
+		<?php do_action('cleanweb/single_product/details', $product->get_id()); ?>
 
 		<?php if ( $product->get_type() !== 'variable' ) { ?>
 		<div class="flex flex-wrap justify-between items-center">
