@@ -1,48 +1,49 @@
 {
-  "name": "wp-rig",
-  "version": "1.0.0",
-  "description": "The \"_s\" for Timber: a dead-simple theme that you can build from. The primary purpose of this theme is to provide a file structure rather than a framework for markup or styles. Configure your Sass, scripts, and task runners however you would like!",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node ./bin/build.js && cp -r assets/img dist/img",
-    "build": "rm -rf dist && node ./bin/build.js build && cp -r assets/img dist/img"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^4.0.3",
-    "@types/glidejs__glide": "^3.4.1",
-    "autoprefixer": "^10.4.0",
-    "browser-sync": "^2.27.7",
-    "esbuild": "^0.14.0",
-    "esbuild-css-modules-plugin": "^2.0.9",
-    "esbuild-postcss": "^0.0.4",
-    "postcss": "^8.4.3",
-    "postcss-import": "^14.0.2",
-    "postcss-jit-props": "^1.0.2",
-    "postcss-preset-env": "^7.0.1",
-    "postcss-pxtorem": "^6.0.0",
-    "stylelint": "^14.1.0",
-    "stylelint-config-standard": "^24.0.0",
-    "tailwindcss": "^3.0.0",
-    "tsc": "^2.0.3"
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "selector-class-pattern": null
-    }
-  },
-  "dependencies": {
-    "@glidejs/glide": "^3.5.2",
-    "choices.js": "^10.1.0",
-    "dialog-polyfill": "^0.5.6",
-    "element-ready": "^6.2.0",
-    "select-pure": "^2.1.4",
-    "the-new-css-reset": "^1.4.9"
-  }
+	"name": "wp-rig",
+	"version": "1.0.0",
+	"description": "The \"_s\" for Timber: a dead-simple theme that you can build from. The primary purpose of this theme is to provide a file structure rather than a framework for markup or styles. Configure your Sass, scripts, and task runners however you would like!",
+	"main": "index.js",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"serve": "node ./bin/build.js && cp -r assets/img dist/img",
+		"build": "rm -rf dist && node ./bin/build.js build && cp -r assets/img dist/img",
+		"lint": "stylelint assets/css"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@fullhuman/postcss-purgecss": "^4.0.3",
+		"@types/glidejs__glide": "^3.4.1",
+		"autoprefixer": "^10.4.0",
+		"browser-sync": "^2.27.7",
+		"esbuild": "^0.14.0",
+		"esbuild-css-modules-plugin": "^2.0.9",
+		"esbuild-postcss": "^0.0.4",
+		"postcss": "^8.4.3",
+		"postcss-import": "^14.0.2",
+		"postcss-jit-props": "^1.0.2",
+		"postcss-preset-env": "^7.0.1",
+		"postcss-pxtorem": "^6.0.0",
+		"stylelint": "^14.1.0",
+		"stylelint-config-standard": "^24.0.0",
+		"tailwindcss": "^3.0.0",
+		"tsc": "^2.0.3"
+	},
+	"stylelint": {
+		"extends": "stylelint-config-standard",
+		"rules": {
+			"selector-class-pattern": null
+		}
+	},
+	"dependencies": {
+		"@glidejs/glide": "^3.5.2",
+		"choices.js": "^10.1.0",
+		"dialog-polyfill": "^0.5.6",
+		"element-ready": "^6.2.0",
+		"select-pure": "^2.1.4",
+		"the-new-css-reset": "^1.4.9"
+	}
 }

@@ -50,6 +50,7 @@ final class Theme {
 			new WooCommerce\Checkout(),
 			new WooCommerce\Account(),
 			new WooCommerce\ProductsSlider(),
+			new WooCommerce\FeaturedAttributes(),
 			new WooCommerce\Ajax\UpdateCartContents(),
 		];
 	}
