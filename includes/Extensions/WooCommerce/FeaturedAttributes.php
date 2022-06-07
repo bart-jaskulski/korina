@@ -65,7 +65,7 @@ class FeaturedAttributes implements \CleanWeb\Component {
 			$attributes_ids = get_term_meta($term->term_id, 'attributes_sort', true) ?: [];
 			foreach ( $attributes_ids as $attributes_id ) {
 				$attribute = wc_get_attribute( $attributes_id );
-				$productAttribute               = $product->get_attribute( $attribute->slug );
+				$productAttribute               = $product->get_attribute( $attribute->slug ) ?: $product->get_attribute(str_replace('pa_', '', $attribute->slug));
 				if (!empty($productAttribute)) {
 					$result[$attribute->name] = $productAttribute;
 				}
