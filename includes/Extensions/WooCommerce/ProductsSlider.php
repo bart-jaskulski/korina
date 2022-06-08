@@ -27,41 +27,32 @@ class ProductsSlider implements \CleanWeb\Component {
 		add_meta_box(
 			'slide',
 			'Ustawienia slidera',
-			fn() => $this->displayMetaBox()
+			fn($post) => $this->displayMetaBox($post)
 		);
 	}
 
-	private function displayMetaBox(): void {
-		woocommerce_wp_checkbox(
-			[
-				'label' => 'Wyróżnione?',
-				'id' => 'featured',
-				'name' => 'featured'
+	private function displayMetaBox(\WP_Post $post): void {
+		wp_enqueue_script('select2');
+		wp_enqueue_script('wc-admin-meta-boxes');
+		wp_enqueue_style('woocommerce_admin_styles');
+
+		get_template_part(
+			'templates/admin/products_slider_settings',
+			args: [
+				'selectedCategories' => $this->getProductCategories($post->ID),
+				'selectedProducts' => $this->getProducts($post->ID),
+				'excludedProducts' => $this->getExcludedProducts($post->ID),
 			]
 		);
-
-		woocommerce_wp_text_input([
-			'type' => 'number',
-			'label' => 'Limit',
-			'id' => 'limit',
-			'name' => 'limit',
-			'placeholder' => 8,
-			'custom_attributes' => [
-				'min' => 8
-			]
-		]);
-
-		woocommerce_wp_select([
-			'id' => 'product-categories',
-			'label' => 'Kategoria produktu',
-			'name' => 'category',
-			'options' => $this->getProductCategories(),
-		]);
 	}
 
 	private function savePost(int $postId) {
-		update_post_meta($postId, 'limit', $_POST['limit'] ?? 8);
+		update_post_meta($postId, 'products_ids', array_unique($_POST['products_ids'] ?? []));
+		update_post_meta($postId, 'excluded_products_ids', array_unique($_POST['excluded_products_ids'] ?? []));
+		update_post_meta($postId, 'categories_slugs', array_unique($_POST['categories_slugs'] ?? []));
+		update_post_meta($postId, 'in_stock', $_POST['in_stock'] ?? false);
 		update_post_meta($postId, 'featured', $_POST['featured'] ?? false);
+		update_post_meta($postId, 'limit', $_POST['limit'] ?? 8);
 	}
 
 	private function displayShortcode( $args ): string {
@@ -71,15 +62,41 @@ class ProductsSlider implements \CleanWeb\Component {
 
 		$id = absint($args['id']);
 
-		$productsArgs    = [
-			'limit'   => get_post_meta( $id, 'limit', true ) ?: 8,
+		$limit          = get_post_meta( $id, 'limit', true ) ?: 8;
+		$productsArgs = [
+			'limit'   => $limit,
+			'status' => ['publish'],
 			'orderby' => 'date',
 			'order'   => 'DESC'
 		];
-		if ( get_post_meta( $id, 'featured', true ) ) {
+		$include      = get_post_meta($id, 'products_ids', true);
+		$featured     = get_post_meta( $id, 'featured', true );
+		if (!empty($include) && $featured) {
+			$productsArgs['include'] = array_unique( array_merge( $include, wc_get_featured_product_ids() ) );
+		} elseif ($featured) {
 			$productsArgs['include'] = wc_get_featured_product_ids();
+		} elseif (!empty($include)) {
+			$productsArgs['include'] = $include;
+		}
+
+		$exclude_ids = get_post_meta( $id, 'excluded_products_ids', true );
+		if (!empty( $exclude_ids )) {
+			$productsArgs['exclude'] = $exclude_ids;
+		}
+		$categories = get_post_meta($id, 'categories_slugs', true);
+		if (!empty($categories)) {
+			$productsArgs['category'] = $categories;
+		}
+		if (get_post_meta($id, 'in_stock', true)) {
+			$productsArgs['stock_status'] = 'instock';
 		}
 		$products = wc_get_products( $productsArgs );
+		if (count($products) < $limit) {
+			if (current_user_can('manage_options')) {
+				return "<p style='font-size: 18px; color: red'>W tym sliderze brakuje produktów, żeby wyświetlić go na stronie!</p>";
+			}
+			return '';
+		}
 
 		ob_start();
 
@@ -94,15 +111,41 @@ class ProductsSlider implements \CleanWeb\Component {
 		return ob_get_clean();
 	}
 
-	private function getProductCategories(): array {
-		/** @var \WP_Term[] $categories */
-		$categories = get_categories( [
-			'taxonomy' => 'product_cat'
-		] );
+	private function getProductCategories(int $postId): array {
+		$categories = get_post_meta($postId, 'categories_slugs', true) ?: [];
 
 		$result = [];
-		foreach ( $categories as $category ) {
-			$result[$category->term_id] = $category->name;
+		foreach ( $categories as $category_slug ) {
+			$category = get_term_by('slug', $category_slug, 'product_cat');
+			$result[$category_slug] = $category->name;
+		}
+
+		return $result;
+	}
+
+	private function getProducts(int $postId): array {
+		$products_id = get_post_meta($postId, 'products_ids', true) ?: [];
+
+		$result = [];
+		foreach ( $products_id as $product_id ) {
+			$product = wc_get_product($product_id);
+			if ($product instanceof \WC_Product) {
+				$result[$product_id] = $product->get_formatted_name();
+			}
+		}
+
+		return $result;
+	}
+
+	private function getExcludedProducts(int $postId): array {
+		$products_id = get_post_meta($postId, 'excluded_products_ids', true) ?: [];
+
+		$result = [];
+		foreach ( $products_id as $product_id ) {
+			$product = wc_get_product($product_id);
+			if ($product instanceof \WC_Product) {
+				$result[$product_id] = $product->get_formatted_name();
+			}
 		}
 
 		return $result;
