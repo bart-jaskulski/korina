@@ -295,3 +295,15 @@ table.c-woocommerce-order-completed {
 #menu-menu-gorne .menu-item a {
   padding: 16px;
 }
+
+.term-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: var(--neutral-4);
+}

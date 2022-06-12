@@ -6,12 +6,16 @@ $logo = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' )[0]
 	<div class="hidden lg:block bg-black text-white text-[13px]">
 		<div class="l-container [ flex flex-wrap justify-between ] [ py-4 ]">
 			<address>
+				<?php if ($phone = get_theme_mod('korina_phone')) { ?>
 				<span class="pr-4 [ border-solid border-neutral-9 border-0 border-r ]">
-					<i class="icon-phone mr-2"></i> +48 123 123 123
+					<i class="icon-phone mr-2"></i> <?php echo esc_html($phone); ?>
 				</span>
+				<?php } ?>
+				<?php if ($email = get_theme_mod('korina_email')) { ?>
 				<span class="pl-4">
-					<i class="icon-mail mr-2"></i> kontakt@kontakt.pl
+					<i class="icon-mail mr-2"></i> <?php echo esc_html($email); ?>
 				</span>
+				<?php } ?>
 			</address>
 			<nav>
 				<?php \CleanWeb\Utils\NavMenu::display_menu(

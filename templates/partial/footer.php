@@ -1,4 +1,4 @@
-<footer class="[ bg-black text-neutral-6 ] [ mt-16 py-20 ]" id="footer">
+<footer class="[ bg-black text-neutral-6 ] [ py-20 ]" id="footer">
 	<div class="l-container">
 		<ul class="[ grid lg:grid-cols-4 gap-8 ] leading-[35px]">
 			<li><?php dynamic_sidebar( 'footer_contact' ); ?></li>
