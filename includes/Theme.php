@@ -33,6 +33,7 @@ final class Theme {
 			new Extensions\Cleanup(),
 //			new Extensions\CommentsRemoval(),
 			new Extensions\ThemeExtensions\FeaturesSlider(),
+			new Extensions\ThemeExtensions\ProducersSlider(),
 			new Extensions\ThemeExtensions\Reviews(),
 		];
 	}
