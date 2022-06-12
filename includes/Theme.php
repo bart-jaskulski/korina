@@ -30,6 +30,7 @@ final class Theme {
 			new Theme\Support(),
 			new Theme\Elements(),
 			new Theme\Assets( $this->manifest ),
+			new Theme\Settings(),
 			new Extensions\Cleanup(),
 //			new Extensions\CommentsRemoval(),
 			new Extensions\ThemeExtensions\FeaturesSlider(),
