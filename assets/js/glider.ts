@@ -16,7 +16,6 @@ export function mountGlider(el: HTMLElement, options: Options = {}): Glide.Prope
 	if (el.querySelectorAll('li').length <= 1) {
 		return null;
 	}
-	console.log(gliderConfig, options)
 
 	const glider = new Glide(`#${el.id}`, gliderConfig).mount()
 

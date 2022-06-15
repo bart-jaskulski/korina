@@ -4,14 +4,14 @@
  */
 
 ?>
-<div class="l-container | flex | bg-white [ py-12 gap-12 ]" data-size="fullwidth">
+<div class="l-container | flex flex-wrap | bg-white [ py-12 gap-12 ]" data-size="fullwidth">
 	<div class="max-w-[200px] flex-grow flex-shrink-0">
 		<h3>Opinie o sklepie</h3>
 		<p>99.5% osób poleca na podstawie prawie 2700 zamówień</p>
 	</div>
 	<?php get_template_part('templates/partial/glider-start', args: [
 		'options' => ['perView' => 3],
-		'classes' => ['!w-[678px]']
+		'classes' => ['max-w-[800px]']
 	]); ?>
 	<?php
 	foreach ( $args as $reviewPost ) { ?>
