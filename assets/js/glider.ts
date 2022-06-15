@@ -3,8 +3,10 @@ import Glide, {Options} from "@glidejs/glide";
 export function mountGlider(el: HTMLElement, options: Options = {}): Glide.Properties|null {
 	const mq = window.matchMedia('(min-width: 64rem)');
 
+	const perView = mq.matches ? (options?.perView ?? 4) : 2;
+	delete options.perView
 	const gliderConfig = Object.assign({
-		perView: mq.matches ? 4 : 2,
+		perView,
 		type: 'slider',
 		startAt: 0,
 		gap: 16,
@@ -14,11 +16,12 @@ export function mountGlider(el: HTMLElement, options: Options = {}): Glide.Prope
 	if (el.querySelectorAll('li').length <= 1) {
 		return null;
 	}
+	console.log(gliderConfig, options)
 
 	const glider = new Glide(`#${el.id}`, gliderConfig).mount()
 
 	mq.addEventListener('change', (e) => {
-		glider.update({perView: e.matches ? 4 : 2})
+		glider.update({perView: e.matches ? gliderConfig.perView : 2})
 	})
 
 	return glider
