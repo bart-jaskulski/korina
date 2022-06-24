@@ -65,7 +65,7 @@ class Reviews implements \CleanWeb\Component {
 	private function displayShortcode(): string {
 		$reviewsPosts = get_posts([
 			'post_type' => 'korina-review',
-			'limit' => -1,
+			'posts_per_page' => -1,
 			'order' => 'random'
 		]);
 		ob_start();
