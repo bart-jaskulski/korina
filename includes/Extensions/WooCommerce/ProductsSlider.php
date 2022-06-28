@@ -8,6 +8,26 @@ class ProductsSlider implements \CleanWeb\Component {
 		add_action('init', fn() => $this->registerPostType());
 		add_action('save_post_korina-slide', fn($id) => $this->savePost($id));
 		add_shortcode('korina_produkty', fn($args) => $this->displayShortcode($args));
+		add_filter('manage_korina-slide_posts_columns', fn($cols) => $this->filterColumns($cols));
+		add_action('manage_korina-slide_posts_custom_column', fn($col, $postId) => $this->displayCustomColumn($col, $postId), accepted_args: 2);
+	}
+
+	private function filterColumns( array $columns ): array {
+		$date = $columns['date'];
+		unset( $columns['date']);
+		$columns['shortcode'] = 'Shortcode';
+		$columns['date'] = $date;
+		return $columns;
+	}
+
+	private function displayCustomColumn( string $col, int $postID ): void {
+		if ($col !== 'shortcode') {
+			return;
+		}
+
+		echo <<<INPUT
+			<input value='[korina_produkty id="$postID"]' type="text" disabled/>
+		INPUT;
 	}
 
 	private function registerPostType(): void {
