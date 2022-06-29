@@ -42,8 +42,29 @@ if ( post_password_required() ) {
 			<?php get_template_part( 'templates/partial/glider-start', args: ['id' => 'product-images', 'options' => ['perView' => 1]] ); ?>
 			<?php foreach ( $images_ids as $image ) { ?>
 				<li class="glide__slide woocommerce-product-gallery__image">
-					<a class="c-product-single-image" href="<?php echo esc_url( $product->get_permalink() ); ?>">
-						<?php echo wp_get_attachment_image( $image, 'woocommerce_single' ); ?>
+					<?php
+					[
+						$src,
+						$width,
+						$height
+					] = wp_get_attachment_image_src($image, 'full');
+					[
+						$srcThumb,
+						$widthThumb,
+						$heightThumb
+					] = wp_get_attachment_image_src( $image, 'woocommerce_single' );
+					?>
+					<a class="c-product-single-image"
+					   href="<?php echo esc_url($src); ?>"
+					   data-pswp-width="<?php echo esc_attr( $width ); ?>"
+					   data-pswp-height="<?php echo esc_attr( $height ); ?>"
+					   data-cropped="true"
+					>
+						<img src="<?php echo esc_url( $srcThumb ); ?>"
+							 width="<?php echo esc_attr( $widthThumb ); ?>"
+							 height="<?php echo esc_attr( $heightThumb ); ?>"
+							 alt=""
+							 />
 					</a>
 				</li>
 			<?php } ?>

@@ -43,6 +43,7 @@
 		"choices.js": "^10.1.0",
 		"dialog-polyfill": "^0.5.6",
 		"element-ready": "^6.2.0",
+		"photoswipe": "^5.2.8",
 		"select-pure": "^2.1.4",
 		"the-new-css-reset": "^1.4.9"
 	}

@@ -26,6 +26,7 @@
 @import "_woocommerce.css";
 @import "_fluid-checkout.css";
 @import "_mega-menu.css";
+@import "photoswipe";
 @import "tailwindcss/base";
 @import "tailwindcss/utilities";
 @import "_choices.css";

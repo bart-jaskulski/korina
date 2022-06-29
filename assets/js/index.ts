@@ -1,6 +1,7 @@
 import elementReady from 'element-ready';
 import Choices from "choices.js";
 import {mountGlider} from "./glider";
+import {lightbox} from "./lightbox";
 
 async function initialize() {
 	if (await elementReady('select[name="orderby"]')) {
@@ -108,3 +109,5 @@ async function toggleMobileMenu() {
 }
 
 toggleMobileMenu()
+
+lightbox.init()
