@@ -30,7 +30,7 @@ class FeaturesSlider implements Component {
 	private function displayShortcode(): string {
 		$featurePosts = get_posts([
 			'post_type' => 'korina-features',
-			'limit' => -1
+			'posts_per_page' => -1
 		]);
 
 		ob_start();

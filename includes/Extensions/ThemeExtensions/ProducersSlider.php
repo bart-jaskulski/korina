@@ -50,7 +50,7 @@ class ProducersSlider implements Component {
 	private function displayShortcode(): string {
 		$featurePosts = get_posts([
 			'post_type' => 'korina-producers',
-			'limit' => -1
+			'posts_per_page' => -1
 		]);
 
 		ob_start();
