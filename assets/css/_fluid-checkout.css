@@ -18,14 +18,17 @@ body:is(.theme-theme, .theme-korina) {
       textarea),
   & div.woocommerce form .fc-step__substep[undefined],
   & .fc-progress-bar .fc-progress-bar__inner,
-  & .select2-container--default .select2-results__option--highlighted[aria-selected],
-  & .select2-container--default .select2-results__option--highlighted[data-selected],
   & .select2-dropdown,
   & form.woocommerce-checkout .fc-wrapper .fc-checkout-order-review .fc-checkout-order-review__inner,
   & .fc-checkout-header .fc-checkout__cart-link,
   & .fc-wrapper #payment ul.wc_payment_methods > li.wc_payment_method > input[type="radio"]:first-child:checked + label,
   & .fc-wrapper #payment ul.payment_methods > li.wc_payment_method .payment_box {
     background-color: var(--white);
+  }
+
+  & .select2-container--default .select2-results__option--highlighted[aria-selected],
+  & .select2-container--default .select2-results__option--highlighted[data-selected] {
+    background-color: var(--black);
   }
 
   & .fc-progress-bar {

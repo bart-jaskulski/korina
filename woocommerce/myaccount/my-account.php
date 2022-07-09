@@ -16,22 +16,21 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
-global $wp;
 ?>
 
 <div class="flex flex-wrap gap-8">
-<nav class='basis-[180px] woocommerce-MyAccount-navigation'>
-	<ul class>
-		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
-			<li class="text-sm <?php echo esc_attr( wc_get_account_menu_item_classes( $endpoint ) ); ?>">
-				<a class="inline-block py-3" href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
-			</li>
-		<?php endforeach; ?>
-	</ul>
-</nav>
+	<nav class='basis-[180px] woocommerce-MyAccount-navigation'>
+		<ul class>
+			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
+				<li class="text-sm <?php echo esc_attr( wc_get_account_menu_item_classes( $endpoint ) ); ?>">
+					<a class="inline-block py-3"
+					   href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</nav>
 
-<div class="flex-grow basis-[70%] woocommerce-MyAccount-content">
-	<?php do_action( 'woocommerce_account_content' ); ?>
-</div>
+	<div class="flex-grow basis-[70%] woocommerce-MyAccount-content">
+		<?php do_action( 'woocommerce_account_content' ); ?>
+	</div>
 </div>

@@ -27,7 +27,6 @@ get_header( 'shop' );
 
 woocommerce_breadcrumb();
 
-
 ?>
 	<header class="my-4 lg:my-12 woocommerce-products-header">
 		<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
